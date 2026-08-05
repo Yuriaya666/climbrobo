@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="00样机（更换电机）-x12.SLDASM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0 6.0765E-11 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="4.046" />
+      <inertia
+        ixx="0.0011674"
+        ixy="1.8298E-12"
+        ixz="7.6374E-05"
+        iyy="0.0014108"
+        iyz="1.5261E-14"
+        izz="0.0013986" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="L1">
+    <inertial>
+      <origin
+        xyz="-0.0058616 -2.587E-05 0.088761"
+        rpy="0 0 0" />
+      <mass
+        value="2.256" />
+      <inertia
+        ixx="0.0013069"
+        ixy="8.6975E-07"
+        ixz="-0.00012077"
+        iyy="0.0022158"
+        iyz="2.8181E-08"
+        izz="0.0016528" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J1"
+    type="revolute">
+    <origin
+      xyz="-0.11768 0 0.10853"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="L1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="L2">
+    <inertial>
+      <origin
+        xyz="0.068841 -0.0018757 0.036586"
+        rpy="0 0 0" />
+      <mass
+        value="2.944" />
+      <inertia
+        ixx="0.00074098"
+        ixy="2.9576E-09"
+        ixz="1.6346E-06"
+        iyy="0.00050229"
+        iyz="1.6291E-05"
+        izz="0.00043746" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J2"
+    type="revolute">
+    <origin
+      xyz="-0.0585000000000002 0 0.1785"
+      rpy="0 0 0" />
+    <parent
+      link="L1" />
+    <child
+      link="L2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="L3">
+    <inertial>
+      <origin
+        xyz="-0.030392 7.893E-06 0.065305"
+        rpy="0 0 0" />
+      <mass
+        value="1.716" />
+      <inertia
+        ixx="0.0012653"
+        ixy="2.9005E-07"
+        ixz="0.00022729"
+        iyy="0.0013329"
+        iyz="-9.1335E-09"
+        izz="0.00052747" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J3"
+    type="revolute">
+    <origin
+      xyz="0.0585 0 0.0770000000000003"
+      rpy="0 0 0" />
+    <parent
+      link="L2" />
+    <child
+      link="L3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="L4">
+    <inertial>
+      <origin
+        xyz="0.22293 -0.001663 -0.0070027"
+        rpy="0 0 0" />
+      <mass
+        value="7.8919" />
+      <inertia
+        ixx="0.053828"
+        ixy="-1.7567E-05"
+        ixz="-9.6843E-08"
+        iyy="0.03702"
+        iyz="9.8893E-07"
+        izz="0.078148" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.65098 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J4"
+    type="revolute">
+    <origin
+      xyz="-0.0520000000000003 0 0.156"
+      rpy="0 0 0" />
+    <parent
+      link="L3" />
+    <child
+      link="L4" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="L5">
+    <inertial>
+      <origin
+        xyz="-0.021608 -7.893E-06 -0.090695"
+        rpy="0 0 0" />
+      <mass
+        value="1.716" />
+      <inertia
+        ixx="0.0012653"
+        ixy="2.9005E-07"
+        ixz="-0.00022729"
+        iyy="0.0013329"
+        iyz="9.1335E-09"
+        izz="0.00052747" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J5"
+    type="revolute">
+    <origin
+      xyz="0.446000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="L4" />
+    <child
+      link="L5" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="L6">
+    <inertial>
+      <origin
+        xyz="-0.010341 0.0018757 -0.040414"
+        rpy="0 0 0" />
+      <mass
+        value="2.944" />
+      <inertia
+        ixx="0.00074098"
+        ixy="2.9581E-09"
+        ixz="-1.6346E-06"
+        iyy="0.00050229"
+        iyz="-1.6291E-05"
+        izz="0.00043746" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.43529 0.96471 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J6"
+    type="revolute">
+    <origin
+      xyz="-0.0520000000000003 0 -0.156"
+      rpy="0 0 0" />
+    <parent
+      link="L5" />
+    <child
+      link="L6" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="L7">
+    <inertial>
+      <origin
+        xyz="-0.052648 8.6983E-06 -0.089739"
+        rpy="0 0 0" />
+      <mass
+        value="2.256" />
+      <inertia
+        ixx="0.0013064"
+        ixy="5.1566E-07"
+        ixz="0.00012079"
+        iyy="0.0022163"
+        iyz="-1.3803E-08"
+        izz="0.0016528" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J7"
+    type="revolute">
+    <origin
+      xyz="0.0584999999999999 0 -0.0770000000000003"
+      rpy="0 0 0" />
+    <parent
+      link="L6" />
+    <child
+      link="L7" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="L8">
+    <inertial>
+      <origin
+        xyz="-0.079364 1.2547E-10 -0.065873"
+        rpy="0 0 0" />
+      <mass
+        value="4.046" />
+      <inertia
+        ixx="0.0011674"
+        ixy="-6.147E-13"
+        ixz="-7.6374E-05"
+        iyy="0.0014108"
+        iyz="-3.1226E-12"
+        izz="0.0013986" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://00样机（更换电机）-x12.SLDASM/meshes/L8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J8"
+    type="revolute">
+    <origin
+      xyz="-0.0585000000000004 0 -0.1785"
+      rpy="0 0 0" />
+    <parent
+      link="L7" />
+    <child
+      link="L8" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="1" />
+  </joint>
+</robot>

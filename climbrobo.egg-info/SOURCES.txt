@@ -1,0 +1,6 @@
+pyproject.toml
+climbrobo.egg-info/PKG-INFO
+climbrobo.egg-info/SOURCES.txt
+climbrobo.egg-info/dependency_links.txt
+climbrobo.egg-info/requires.txt
+climbrobo.egg-info/top_level.txt

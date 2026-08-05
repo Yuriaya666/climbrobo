@@ -1,0 +1,18 @@
+# Python缓存
+__pycache__/
+*.py[cod]
+
+# 虚拟环境本体
+.venv/
+venv/
+env/
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 运行产生的文件
+*.log
+*.tmp
+outputs/
+results/

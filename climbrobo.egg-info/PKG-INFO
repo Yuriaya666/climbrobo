@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: climbrobo
+Version: 0.1.0
+Summary: HFM competition environment for fusion control
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.20
+Requires-Dist: gymnasium>=0.29
+Requires-Dist: pyyaml>=5.0
+Requires-Dist: stable-baselines3>=2.7.1
+Requires-Dist: torch>=2.8.0
+Requires-Dist: onnx>=1.19.1
+Requires-Dist: tqdm>=4.67.3
+Requires-Dist: onnxruntime>=1.20.1
+Requires-Dist: tensorboard>=2.20.0
+Requires-Dist: optuna>=4.8.0
+Requires-Dist: pybullet>=3.2.7
+Requires-Dist: trimesh>=4.12.2
+Requires-Dist: fast-simplification>=0.1.13
+Requires-Dist: shapely>=2.0.7
+Requires-Dist: matplotlib>=3.9.4
+Requires-Dist: ipympl>=0.10.0
+Requires-Dist: plotly>=6.9.0
+Requires-Dist: nbformat>=5.10.4
