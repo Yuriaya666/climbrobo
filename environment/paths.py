@@ -137,6 +137,18 @@ class ProjectPaths:
 
         return self.candidate_dir / "fixed_cross_obstacle_best_ik.npz"
 
+    @property
+    def position_workspace_test_csv(self) -> Path:
+        """独立position-only工作空间测试的逐seed结果CSV。"""
+
+        return self.candidate_dir / "position_workspace_test.csv"
+
+    @property
+    def position_workspace_test_npz(self) -> Path:
+        """独立position-only工作空间测试的汇总NPZ。"""
+
+        return self.candidate_dir / "position_workspace_test.npz"
+
     def validate_required_files(self) -> None:
         """在真正加载PyBullet前先给出清楚的缺失文件错误。"""
 
