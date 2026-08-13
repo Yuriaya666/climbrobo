@@ -1,0 +1,20 @@
+units: meter
+
+suction_frames:
+  base_end:
+    link: base_link
+    # 相对于base_link坐标系
+    position: [0.0, 0.0, 0.0]
+    # 从吸盘指向吸附表面
+    normal: [1.0, 0.0, -1.0]
+    # 用于确定吸盘坐标系的面内方向
+    y_reference: [0.0, 1.0, 0.0]
+
+  l8_end:
+    link: L8
+    # 相对于L8坐标系
+    position: [-0.11768, 0.0, -0.10853]
+    # 从吸盘指向吸附表面
+    normal: [-1.0, 0.0, -1.0]
+    # 用于确定吸盘坐标系的面内方向
+    y_reference: [0.0, 1.0, 0.0]
