@@ -22,6 +22,16 @@ class _Tree:
     parents: list[int]
 
 
+@dataclass(frozen=True)
+class RRTStats:
+    """一次RRT运行的轻量统计，不改变原有plan返回值。"""
+
+    iterations: int = 0
+    tree_nodes: int = 0
+    start_valid: bool = False
+    goal_valid: bool = False
+
+
 class RRTConnect:
     """在有限关节范围内搜索连接起点和终点的无碰撞路径。"""
 
@@ -47,6 +57,8 @@ class RRTConnect:
         self.goal_bias = float(goal_bias)
         self.edge_resolution_rad = float(edge_resolution_rad)
         self.rng = np.random.default_rng(random_seed)
+        self.random_seed = int(random_seed)
+        self.last_stats = RRTStats()
 
     def plan(
         self,
@@ -58,12 +70,20 @@ class RRTConnect:
     ) -> list[np.ndarray] | None:
         start = self._clip_state(start)
         goal = self._clip_state(goal)
-        if not is_state_valid(start) or not is_state_valid(goal):
+        start_valid = bool(is_state_valid(start))
+        goal_valid = bool(is_state_valid(goal))
+        if not start_valid or not goal_valid:
+            self.last_stats = RRTStats(
+                iterations=0,
+                tree_nodes=0,
+                start_valid=start_valid,
+                goal_valid=goal_valid,
+            )
             return None
         tree_a = _Tree([start.copy()], [-1])
         tree_b = _Tree([goal.copy()], [-1])
 
-        for _ in range(self.max_iterations):
+        for iteration in range(self.max_iterations):
             sample = goal if self.rng.random() < self.goal_bias else self.rng.uniform(self.lower, self.upper)
             index_a, reached_a = self._extend(tree_a, sample, is_state_valid, is_segment_valid)
             if index_a is None:
@@ -84,9 +104,27 @@ class RRTConnect:
                 if np.linalg.norm(path[0] - start) > np.linalg.norm(path[-1] - start):
                     path.reverse()
                 if np.linalg.norm(path[-1] - path[0]) < 1e-10:
+                    self.last_stats = RRTStats(
+                        iterations=iteration + 1,
+                        tree_nodes=len(tree_a.states) + len(tree_b.states),
+                        start_valid=True,
+                        goal_valid=True,
+                    )
                     return [path[0].copy()]
+                self.last_stats = RRTStats(
+                    iterations=iteration + 1,
+                    tree_nodes=len(tree_a.states) + len(tree_b.states),
+                    start_valid=True,
+                    goal_valid=True,
+                )
                 return self._deduplicate(path)
             tree_a, tree_b = tree_b, tree_a
+        self.last_stats = RRTStats(
+            iterations=self.max_iterations,
+            tree_nodes=len(tree_a.states) + len(tree_b.states),
+            start_valid=True,
+            goal_valid=True,
+        )
         return None
 
     def _extend(self, tree: _Tree, target: np.ndarray, is_state_valid: StateValidity,

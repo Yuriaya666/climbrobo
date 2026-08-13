@@ -107,6 +107,36 @@ class ProjectPaths:
 
         return self.candidate_dir / "successful_step3_trajectory.csv"
 
+    @property
+    def fixed_cross_obstacle_trajectory_npz(self) -> Path:
+        """固定跨障目标成功轨迹的NPZ数据文件。"""
+
+        return self.candidate_dir / "fixed_cross_obstacle_trajectory.npz"
+
+    @property
+    def fixed_cross_obstacle_trajectory_csv(self) -> Path:
+        """固定跨障目标逐状态关节角CSV表格。"""
+
+        return self.candidate_dir / "fixed_cross_obstacle_trajectory.csv"
+
+    @property
+    def fixed_cross_obstacle_ik_diagnostics_csv(self) -> Path:
+        """固定跨障目标逐yaw、逐IK种子的诊断CSV。"""
+
+        return self.candidate_dir / "fixed_cross_obstacle_ik_diagnostics.csv"
+
+    @property
+    def fixed_cross_obstacle_rrt_diagnostics_csv(self) -> Path:
+        """固定跨障目标多次RRT运行统计CSV。"""
+
+        return self.candidate_dir / "fixed_cross_obstacle_rrt_diagnostics.csv"
+
+    @property
+    def fixed_cross_obstacle_best_ik_npz(self) -> Path:
+        """固定目标搜索中位置误差最小的best-effort IK构型。"""
+
+        return self.candidate_dir / "fixed_cross_obstacle_best_ik.npz"
+
     def validate_required_files(self) -> None:
         """在真正加载PyBullet前先给出清楚的缺失文件错误。"""
 
