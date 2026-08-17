@@ -226,7 +226,7 @@ def _run_fixed_target_ik(
 ) -> IKSearchResult:
     """只对固定目标做yaw+multi-start IK，并保留全局best-effort结果。"""
 
-    target_candidate = planner._candidate_from_line_sample(target.sample, "foot2")
+    target_candidate = planner._candidate_from_line_sample(target.sample, "foot2", "surface2")
     moving_link_index = scene.link_index(moving_frame.link_name)
     support_link_index = scene.link_index(support_frame.link_name)
     preferred_y = scene.get_suction_pose(moving_frame).y_axis.copy()
@@ -650,7 +650,7 @@ def main() -> None:
         ik_jacobian_mode="pybullet",
     )
     planner = OneStepPlanner(paths=paths, settings=settings, gui=False)
-    target_candidate = planner._candidate_from_line_sample(target.sample, "foot2")
+    target_candidate = planner._candidate_from_line_sample(target.sample, "foot2", "surface2")
 
     with PyBulletScene(paths, gui=args.gui) as scene:
         scene.load_tower()

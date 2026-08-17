@@ -1,0 +1,2229 @@
+{
+  "design_name": "OPTIMIZED_8R_YAW_PITCH_YAW_PITCH",
+  "link_lengths_m": [
+    0.2944788185070823,
+    0.15865600335865368,
+    0.2098367563619965,
+    0.20845446162884873
+  ],
+  "link_proxy_radii_m": [
+    0.06432821157554557,
+    0.08119897808583824,
+    0.0819418995254785,
+    0.062049541187450166
+  ],
+  "joint_proxy_radii_m": [
+    0.04,
+    0.04,
+    0.04,
+    0.04
+  ],
+  "collision_inflation_m": 0.005,
+  "calibration": {
+    "mesh_measurements": {
+      "base_link": {
+        "name": "base_link",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/base_link.STL",
+        "vertex_count": 6636,
+        "local_bounds_m": [
+          [
+            -0.14967767894268036,
+            -0.05999999865889549,
+            -0.04228150099515915
+          ],
+          [
+            0.04228150099515915,
+            0.05999999865889549,
+            0.11903301626443863
+          ]
+        ],
+        "pca_extents_m": [
+          0.1973400292174591,
+          0.12007147100525219,
+          0.12409849325418049
+        ],
+        "pca_axis_m": [
+          0.7756344146682981,
+          -0.001165400804294725,
+          -0.631181350027971
+        ],
+        "axial_length_m": 0.1973400292174591,
+        "cross_section_width_m": 0.12007147100525219,
+        "cross_section_height_m": 0.12409849325418049,
+        "equivalent_radius_m": 0.06204924662709024,
+        "radial_max_m": 0.06721828157943495,
+        "radial_p99_m": 0.063777397802042
+      },
+      "L1": {
+        "name": "L1",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L1.STL",
+        "vertex_count": 83298,
+        "local_bounds_m": [
+          [
+            -0.06650000065565109,
+            -0.04800000041723251,
+            0.00549999950453639
+          ],
+          [
+            0.05999999865889549,
+            0.04800000041723251,
+            0.22100000083446503
+          ]
+        ],
+        "pca_extents_m": [
+          0.24180672892054256,
+          0.1629084818247929,
+          0.09638692333503679
+        ],
+        "pca_axis_m": [
+          -0.32563604918850114,
+          -0.006957959306466699,
+          0.9454695924624933
+        ],
+        "axial_length_m": 0.24180672892054256,
+        "cross_section_width_m": 0.1629084818247929,
+        "cross_section_height_m": 0.09638692333503679,
+        "equivalent_radius_m": 0.08145424091239645,
+        "radial_max_m": 0.09610411494185361,
+        "radial_p99_m": 0.06533461698167645
+      },
+      "L2": {
+        "name": "L2",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L2.STL",
+        "vertex_count": 87132,
+        "local_bounds_m": [
+          [
+            0.007999999448657036,
+            -0.06231720745563507,
+            -0.0625
+          ],
+          [
+            0.11349999904632568,
+            0.06231720745563507,
+            0.08699999749660492
+          ]
+        ],
+        "pca_extents_m": [
+          0.17604970974219647,
+          0.1623979561716765,
+          0.14828874528880837
+        ],
+        "pca_axis_m": [
+          0.5412707982222125,
+          0.2774651377825892,
+          0.7937499734218441
+        ],
+        "axial_length_m": 0.17604970974219647,
+        "cross_section_width_m": 0.1623979561716765,
+        "cross_section_height_m": 0.14828874528880837,
+        "equivalent_radius_m": 0.08119897808583824,
+        "radial_max_m": 0.08696876959355618,
+        "radial_p99_m": 0.07228921537583696
+      },
+      "L3": {
+        "name": "L3",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L3.STL",
+        "vertex_count": 75006,
+        "local_bounds_m": [
+          [
+            -0.058000002056360245,
+            -0.04799026623368263,
+            0.005999993998557329
+          ],
+          [
+            0.047999996691942215,
+            0.04795899614691734,
+            0.18800000846385956
+          ]
+        ],
+        "pca_extents_m": [
+          0.2092164474235366,
+          0.09859666406194276,
+          0.12865641959198992
+        ],
+        "pca_axis_m": [
+          -0.4005883169632955,
+          -0.0070315070220032805,
+          0.916231170732318
+        ],
+        "axial_length_m": 0.2092164474235366,
+        "cross_section_width_m": 0.09859666406194276,
+        "cross_section_height_m": 0.12865641959198992,
+        "equivalent_radius_m": 0.06432820979599496,
+        "radial_max_m": 0.07113429351701725,
+        "radial_p99_m": 0.05847903775600605
+      },
+      "L4": {
+        "name": "L4",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L4.STL",
+        "vertex_count": 2180214,
+        "local_bounds_m": [
+          [
+            0.006000000052154064,
+            -0.1921083778142929,
+            -0.05093611031770706
+          ],
+          [
+            0.4399999976158142,
+            0.22972001135349274,
+            0.1151999980211258
+          ]
+        ],
+        "pca_extents_m": [
+          0.41991246370967417,
+          0.44732709529216363,
+          0.20191808293807234
+        ],
+        "pca_axis_m": [
+          -0.05607479989425491,
+          0.9915354118362442,
+          0.11710313356844591
+        ],
+        "axial_length_m": 0.41991246370967417,
+        "cross_section_width_m": 0.44732709529216363,
+        "cross_section_height_m": 0.20191808293807234,
+        "equivalent_radius_m": 0.22366354764608182,
+        "radial_max_m": 0.2352852132715549,
+        "radial_p99_m": 0.21753465663832655
+      },
+      "L5": {
+        "name": "L5",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L5.STL",
+        "vertex_count": 75006,
+        "local_bounds_m": [
+          [
+            -0.09999999403953552,
+            -0.04795899614691734,
+            -0.15000000596046448
+          ],
+          [
+            0.0060000005178153515,
+            0.04799026623368263,
+            0.03200000151991844
+          ]
+        ],
+        "pca_extents_m": [
+          0.209216439461556,
+          0.09859666366534675,
+          0.12865642315109113
+        ],
+        "pca_axis_m": [
+          0.40058832141472384,
+          0.0070315077181459795,
+          0.9162311687807525
+        ],
+        "axial_length_m": 0.209216439461556,
+        "cross_section_width_m": 0.09859666366534675,
+        "cross_section_height_m": 0.12865642315109113,
+        "equivalent_radius_m": 0.06432821157554557,
+        "radial_max_m": 0.07113429460294046,
+        "radial_p99_m": 0.05847903829667867
+      },
+      "L6": {
+        "name": "L6",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L6.STL",
+        "vertex_count": 87132,
+        "local_bounds_m": [
+          [
+            -0.054999999701976776,
+            -0.06231720745563507,
+            -0.13950000703334808
+          ],
+          [
+            0.05050000175833702,
+            0.06231720745563507,
+            0.009999999776482582
+          ]
+        ],
+        "pca_extents_m": [
+          0.17605020656766024,
+          0.1623922721566399,
+          0.148289834873901
+        ],
+        "pca_axis_m": [
+          -0.5410872554260114,
+          -0.27761980170734324,
+          0.7938210300285083
+        ],
+        "axial_length_m": 0.17605020656766024,
+        "cross_section_width_m": 0.1623922721566399,
+        "cross_section_height_m": 0.148289834873901,
+        "equivalent_radius_m": 0.08119613607831995,
+        "radial_max_m": 0.08697015226756001,
+        "radial_p99_m": 0.07228946366605796
+      },
+      "L7": {
+        "name": "L7",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L7.STL",
+        "vertex_count": 83298,
+        "local_bounds_m": [
+          [
+            -0.1185000017285347,
+            -0.04800000041723251,
+            -0.17299999296665192
+          ],
+          [
+            0.00800000037997961,
+            0.04800000041723251,
+            0.042500000447034836
+          ]
+        ],
+        "pca_extents_m": [
+          0.2415527798651968,
+          0.163883799050957,
+          0.09642907456977648
+        ],
+        "pca_axis_m": [
+          0.32188620499635057,
+          0.0035266605497220604,
+          0.9467717959985997
+        ],
+        "axial_length_m": 0.2415527798651968,
+        "cross_section_width_m": 0.163883799050957,
+        "cross_section_height_m": 0.09642907456977648,
+        "equivalent_radius_m": 0.0819418995254785,
+        "radial_max_m": 0.09553696366457658,
+        "radial_p99_m": 0.06512080072028241
+      },
+      "L8": {
+        "name": "L8",
+        "path": "/home/song/projects/climbrobo/robots_model/meshes/L8.STL",
+        "vertex_count": 6636,
+        "local_bounds_m": [
+          [
+            -0.15995916724205017,
+            -0.05999999865889549,
+            -0.1508145034313202
+          ],
+          [
+            0.03200000524520874,
+            0.05999999865889549,
+            0.010500005446374416
+          ]
+        ],
+        "pca_extents_m": [
+          0.1973443376197166,
+          0.12007867040623824,
+          0.12409908237490033
+        ],
+        "pca_axis_m": [
+          0.7756706456471251,
+          -0.0013261468590215486,
+          0.6311365072754707
+        ],
+        "axial_length_m": 0.1973443376197166,
+        "cross_section_width_m": 0.12007867040623824,
+        "cross_section_height_m": 0.12409908237490033,
+        "equivalent_radius_m": 0.062049541187450166,
+        "radial_max_m": 0.06722937709677611,
+        "radial_p99_m": 0.06376144832420541
+      }
+    },
+    "joint_measurements": {
+      "J1": {
+        "joint_name": "J1",
+        "child_link": "L1",
+        "mesh_name": "L1.STL",
+        "sample_count": 39639,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.05305431470014792,
+        "max_radius_m": 0.05439209477955659,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      },
+      "J2": {
+        "joint_name": "J2",
+        "child_link": "L2",
+        "mesh_name": "L2.STL",
+        "sample_count": 23546,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.05483562734075078,
+        "max_radius_m": 0.054988540415321946,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      },
+      "J3": {
+        "joint_name": "J3",
+        "child_link": "L3",
+        "mesh_name": "L3.STL",
+        "sample_count": 39503,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.052843260201199345,
+        "max_radius_m": 0.05415025309846041,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      },
+      "J4": {
+        "joint_name": "J4",
+        "child_link": "L4",
+        "mesh_name": "L4.STL",
+        "sample_count": 38897,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.054360348659979026,
+        "max_radius_m": 0.05490829161085434,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      },
+      "J5": {
+        "joint_name": "J5",
+        "child_link": "L5",
+        "mesh_name": "L5.STL",
+        "sample_count": 4611,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.03721089204746167,
+        "max_radius_m": 0.044040755813240386,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      },
+      "J6": {
+        "joint_name": "J6",
+        "child_link": "L6",
+        "mesh_name": "L6.STL",
+        "sample_count": 16494,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.05478410697181728,
+        "max_radius_m": 0.054999999363314026,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      },
+      "J7": {
+        "joint_name": "J7",
+        "child_link": "L7",
+        "mesh_name": "L7.STL",
+        "sample_count": 6247,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.046089587470329346,
+        "max_radius_m": 0.04682147055348115,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      },
+      "J8": {
+        "joint_name": "J8",
+        "child_link": "L8",
+        "mesh_name": "L8.STL",
+        "sample_count": 4640,
+        "neighborhood_radius_m": 0.055,
+        "quantile": 0.99,
+        "raw_radius_m": 0.03707088077514213,
+        "max_radius_m": 0.05408511445127227,
+        "source": "child-link STL vertices within Euclidean neighborhood of link origin"
+      }
+    }
+  },
+  "baseline": {
+    "actual_urdf": [
+      {
+        "state": "initial",
+        "non_adjacent_self_collision_count": 0,
+        "pairs": []
+      },
+      {
+        "state": "step1_final",
+        "non_adjacent_self_collision_count": 0,
+        "pairs": []
+      },
+      {
+        "state": "step2_final",
+        "non_adjacent_self_collision_count": 0,
+        "pairs": []
+      }
+    ],
+    "calibrated_proxy": [
+      {
+        "state": "initial",
+        "non_adjacent_self_collision_count": 0,
+        "pairs": []
+      },
+      {
+        "state": "step1_final",
+        "non_adjacent_self_collision_count": 0,
+        "pairs": []
+      },
+      {
+        "state": "step2_final",
+        "non_adjacent_self_collision_count": 0,
+        "pairs": []
+      }
+    ],
+    "actual_counts": [
+      0,
+      0,
+      0
+    ],
+    "proxy_counts": [
+      0,
+      0,
+      0
+    ],
+    "status": "PASS"
+  },
+  "saved_q_goal_audit": {
+    "q_goal_count": 4,
+    "variants": [
+      {
+        "label": "nominal",
+        "inflation_m": 0.005,
+        "collision_pass_count": 0,
+        "tasks": [
+          {
+            "task_id": "surface1_to_surface1_base_end_to_l8_end",
+            "position_error_m": 1.1906079064529903e-09,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.14082635133735227,
+            "critical_pair": "left_link_1↔left_link_3",
+            "penetration_m": 0.14082635133735227,
+            "self_collision": true,
+            "tower_collision": false
+          },
+          {
+            "task_id": "surface1_to_surface2_base_end_to_l8_end",
+            "position_error_m": 3.88107127038707e-13,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.08409166550822987,
+            "critical_pair": "right_link_2↔Tower",
+            "penetration_m": 0.08409166550822987,
+            "self_collision": false,
+            "tower_collision": true
+          },
+          {
+            "task_id": "surface2_to_surface1_l8_end_to_base_end",
+            "position_error_m": 1.2767364558677812e-09,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.01012196942413627,
+            "critical_pair": "left_link_1↔Tower",
+            "penetration_m": 0.01012196942413627,
+            "self_collision": false,
+            "tower_collision": true
+          },
+          {
+            "task_id": "surface2_to_surface2_l8_end_to_base_end",
+            "position_error_m": 5.872204957347282e-12,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.04442781443845805,
+            "critical_pair": "left_joint_1↔Tower",
+            "penetration_m": 0.04442781443845805,
+            "self_collision": false,
+            "tower_collision": true
+          }
+        ]
+      },
+      {
+        "label": "nominal_plus_5mm",
+        "inflation_m": 0.01,
+        "collision_pass_count": 0,
+        "tasks": [
+          {
+            "task_id": "surface1_to_surface1_base_end_to_l8_end",
+            "position_error_m": 1.1906079064529903e-09,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.14875136877323647,
+            "critical_pair": "left_link_1↔left_link_3",
+            "penetration_m": 0.14875136877323647,
+            "self_collision": true,
+            "tower_collision": false
+          },
+          {
+            "task_id": "surface1_to_surface2_base_end_to_l8_end",
+            "position_error_m": 3.88107127038707e-13,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.08909166550822986,
+            "critical_pair": "right_link_2↔Tower",
+            "penetration_m": 0.08909166550822986,
+            "self_collision": false,
+            "tower_collision": true
+          },
+          {
+            "task_id": "surface2_to_surface1_l8_end_to_base_end",
+            "position_error_m": 1.2767364558677812e-09,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.01426220924012981,
+            "critical_pair": "left_link_1↔Tower",
+            "penetration_m": 0.01426220924012981,
+            "self_collision": true,
+            "tower_collision": true
+          },
+          {
+            "task_id": "surface2_to_surface2_l8_end_to_base_end",
+            "position_error_m": 5.872204957347282e-12,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.049427814438458055,
+            "critical_pair": "left_joint_1↔Tower",
+            "penetration_m": 0.049427814438458055,
+            "self_collision": false,
+            "tower_collision": true
+          }
+        ]
+      },
+      {
+        "label": "nominal_plus_10mm",
+        "inflation_m": 0.015,
+        "collision_pass_count": 0,
+        "tasks": [
+          {
+            "task_id": "surface1_to_surface1_base_end_to_l8_end",
+            "position_error_m": 1.1906079064529903e-09,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.1527541419574514,
+            "critical_pair": "left_link_1↔left_link_3",
+            "penetration_m": 0.1527541419574514,
+            "self_collision": true,
+            "tower_collision": false
+          },
+          {
+            "task_id": "surface1_to_surface2_base_end_to_l8_end",
+            "position_error_m": 3.88107127038707e-13,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.09409166550822987,
+            "critical_pair": "right_link_2↔Tower",
+            "penetration_m": 0.09409166550822987,
+            "self_collision": false,
+            "tower_collision": true
+          },
+          {
+            "task_id": "surface2_to_surface1_l8_end_to_base_end",
+            "position_error_m": 1.2767364558677812e-09,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.01818509582822877,
+            "critical_pair": "left_link_1↔Tower",
+            "penetration_m": 0.01818509582822877,
+            "self_collision": true,
+            "tower_collision": true
+          },
+          {
+            "task_id": "surface2_to_surface2_l8_end_to_base_end",
+            "position_error_m": 5.872204957347282e-12,
+            "normal_error_deg": 0.0,
+            "collision_pass": false,
+            "minimum_clearance_m": -0.05442781443845805,
+            "critical_pair": "left_joint_1↔Tower",
+            "penetration_m": 0.05442781443845805,
+            "self_collision": true,
+            "tower_collision": true
+          }
+        ]
+      }
+    ],
+    "all_saved": true
+  },
+  "searches": [
+    {
+      "task_id": "surface1_to_surface1_base_end_to_l8_end",
+      "target_xyz_m": [
+        0.0016285776666451288,
+        0.06999996003949106,
+        1.122000185488565
+      ],
+      "target_normal": [
+        -0.9999999958856641,
+        -7.264577108190293e-08,
+        -9.071199780455458e-05
+      ],
+      "target_segment_id": 54,
+      "target_s_m": 0.0,
+      "ik": {
+        "task_id": "surface1_to_surface1_base_end_to_l8_end",
+        "yaw_samples": 8,
+        "seeds_per_yaw": 8,
+        "normal_only_seeds": 32,
+        "raw_ik_attempts": 96,
+        "position_normal_converged_count": 17,
+        "unique_ik_branch_count": 17
+      },
+      "collision_free_endpoint_count": 6,
+      "collision_pair_counts": {
+        "left_link_1↔Tower": 3,
+        "left_joint_1↔Tower": 1,
+        "right_link_1↔Tower": 4,
+        "right_link_2↔Tower": 2,
+        "right_joint_2↔Tower": 2,
+        "central_body↔left_link_3": 4,
+        "central_body↔left_joint_4": 4,
+        "left_link_1↔left_link_3": 4,
+        "left_link_1↔left_joint_3": 4,
+        "left_link_3↔left_joint_1": 4,
+        "left_joint_1↔left_joint_4": 4,
+        "central_body↔right_link_3": 2,
+        "central_body↔right_joint_4": 1,
+        "l8_end_mesh↔right_joint_1": 1,
+        "right_link_1↔right_link_3": 3,
+        "right_link_1↔right_joint_3": 3,
+        "right_link_3↔right_joint_1": 2,
+        "right_joint_1↔right_joint_4": 2
+      },
+      "best_collision_free": {
+        "q": [
+          1.299912975625492,
+          -0.8245861019750699,
+          0.48732541534393603,
+          0.8327901363947405,
+          1.0292413767830542,
+          -0.8639406328946639,
+          0.3988348386025586,
+          0.5591122799200753
+        ],
+        "mode": "normal_only",
+        "yaw_rad": 0.0,
+        "position_error_m": 4.385116902241586e-09,
+        "normal_error_deg": 0.0,
+        "collision": {
+          "pass": true,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "critical": null,
+          "bad_pairs": [],
+          "bad_pair_counts": {},
+          "self_collision": false,
+          "tower_collision": false
+        },
+        "joint_limit_margin_rad": 0.512674584656064
+      },
+      "candidate_rows": [
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 0.0,
+          "position_error_m": 3.872482642158479e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.038252157845895515,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.01564285752071004,
+          "q": [
+            -2.429069183183914,
+            0.5815343231163659,
+            0.6455071886010644,
+            2.186325519328089,
+            -0.4498421164915664,
+            1.7612856201000324,
+            -0.98435714247929,
+            -0.897584794921878
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 0.7853981633974483,
+          "position_error_m": 4.0132305783970983e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.01912359607617281,
+          "critical_pair": "left_link_1↔left_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.1537899210164022,
+          "q": [
+            -1.8318579499598573,
+            2.05182289595424,
+            0.6393094808822686,
+            1.5715820779179015,
+            -2.9210159164886718,
+            -0.5058462869338889,
+            0.8462100789835978,
+            -1.08719453114232
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 1.5707963267948966,
+          "position_error_m": 2.3662672812321896e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.0887504070808588,
+          "critical_pair": "right_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.0016728053516685826,
+          "q": [
+            -0.4294283854516488,
+            1.725865008181869,
+            -0.9983271946483314,
+            2.3343300214393965,
+            1.463016607778058,
+            -0.30373878223551154,
+            0.8888619857499812,
+            2.930225900009227
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 1.5707963267948966,
+          "position_error_m": 1.7844988204788782e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.03203397059907412,
+          "critical_pair": "right_link_2↔Tower",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.19167627466197867,
+          "q": [
+            0.8403759893653165,
+            -1.8309727962214513,
+            0.22504962134097967,
+            1.5886396876885822,
+            -2.9483237253380215,
+            -1.2026104149634593,
+            -0.6806260320572791,
+            2.487322960514852
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.141592653589793,
+          "position_error_m": 1.7457735042562607e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.13351283167809327,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.004591121783942831,
+          "q": [
+            0.5686649828489124,
+            3.128462144840484,
+            -0.9954088782160572,
+            2.5810279391832944,
+            1.5779607904818174,
+            -0.9467052284165604,
+            -0.016269555610937597,
+            1.581803128755986
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.1906079064529903e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.14082635133735227,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.009738826540943823,
+          "q": [
+            0.4553392515116881,
+            3.0887918030703143,
+            -0.9902611734590562,
+            2.5707311882295056,
+            1.875439089190449,
+            -0.8921148484046337,
+            -0.1133244619208739,
+            1.7120949519068296
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.958448543042399e-05,
+          "normal_error_deg": 0.0004963076605279232,
+          "minimum_clearance_m": -0.14702373902508678,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.08534357824849303,
+          "q": [
+            -1.5371283994627958,
+            0.8479801218714633,
+            -0.1945071508351253,
+            1.708663977906449,
+            -1.5621361678133905,
+            3.054656421751507,
+            -0.33493402725672733,
+            0.49226159036355516
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.625600045506548e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.04049918542707648,
+          "critical_pair": "right_link_1↔right_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.18461807642407058,
+          "q": [
+            2.3206018956390513,
+            -0.13039120833605522,
+            -0.8153819235759294,
+            0.5749606933386794,
+            1.7043098331648747,
+            -1.6792178851509574,
+            -0.0887044475796072,
+            1.3235276647093808
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 8.191586264337088e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.009251240880081946,
+          "critical_pair": "right_link_1↔right_joint_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.5882617165880281,
+          "q": [
+            -1.4012018327434972,
+            2.2032596187669498,
+            0.39122887550178215,
+            0.9024196550699651,
+            -0.9784374898962978,
+            2.4017924128248485,
+            0.41173828341197194,
+            0.4941037806554092
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 4.385116902241586e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.512674584656064,
+          "q": [
+            1.299912975625492,
+            -0.8245861019750699,
+            0.48732541534393603,
+            0.8327901363947405,
+            1.0292413767830542,
+            -0.8639406328946639,
+            0.3988348386025586,
+            0.5591122799200753
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.3963214897563345e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.1388044460166859,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.0024199854760914574,
+          "q": [
+            -0.4763480414605762,
+            -3.0993999322497148,
+            0.9975800145239085,
+            0.7248470595366986,
+            -1.812610197734671,
+            0.8056693240922819,
+            0.030983493517262675,
+            1.7789414545192814
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 6.011265210948891e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.03334010800464113,
+          "critical_pair": "left_link_1↔left_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.01812891729356969,
+          "q": [
+            0.7370105450229467,
+            -1.8116448391050357,
+            0.9818710827064303,
+            1.0162464394338393,
+            1.5998413519574195,
+            -0.4176599516836514,
+            -0.2521744069528241,
+            -1.7849153890154719
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.4744187552043708e-08,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.07881310960719842,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.1884516143288082,
+          "q": [
+            -1.6950756087418621,
+            1.0389334042441423,
+            0.18089049191149673,
+            2.3127498752324605,
+            -1.5955926228917123,
+            0.27474222554533695,
+            -0.8115483856711918,
+            -2.492773999682709
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.0237755713349434e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.013423687127377598,
+          "critical_pair": "left_link_1↔left_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.0007824956997402044,
+          "q": [
+            1.5700112910815271,
+            -2.131459914598481,
+            -0.9992175043002598,
+            1.6923585667223209,
+            0.6748653258583868,
+            -0.3688618925069704,
+            -0.8195493848036631,
+            0.5168317457196798
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.7596783175528837e-08,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.06175919537761097,
+          "critical_pair": "right_link_2↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 4.709258760726698e-09,
+          "q": [
+            0.5162853817064993,
+            -1.6913876312706795,
+            0.887692719708097,
+            1.2542504196871216,
+            -3.053193974789156,
+            -0.9956182513565814,
+            -0.4220372753407854,
+            3.1399999952907414
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.8653976544521906e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.14425152529571714,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.003081254344696638,
+          "q": [
+            0.8591822957906939,
+            -0.5290757057987769,
+            0.9969187456553034,
+            1.1754678574496722,
+            2.9348998271781666,
+            3.115875908120568,
+            0.24802031734838076,
+            -1.76981074025386
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.6433879944335924e-08,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.14338869862216275,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.0030829043260562905,
+          "q": [
+            -1.8550845340747184,
+            -3.136917095673944,
+            -0.44966507174975684,
+            0.7303741851501184,
+            -2.03373213707675,
+            0.8565657130558298,
+            0.13592236151215784,
+            1.8520101059643979
+          ]
+        }
+      ],
+      "refinement_attempts": 0,
+      "runtime_s": 85.18769417703152,
+      "trajectory": {
+        "straight_success": true,
+        "rrt_success": false,
+        "failure": null,
+        "artifact": {
+          "npz": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface1_to_surface1_base_end_to_l8_end.npz",
+          "csv": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface1_to_surface1_base_end_to_l8_end.csv",
+          "method": "Straight",
+          "minimum_clearance_m": 0.02,
+          "planning_time_s": 2.3248893739655614
+        }
+      },
+      "collision_free_q_goal_artifact": {
+        "path": "/home/song/projects/climbrobo/models/design_results/collision_free_q_goals/optimized_8r_axis8_task_0.npz",
+        "task_index": 0
+      }
+    },
+    {
+      "task_id": "surface1_to_surface2_base_end_to_l8_end",
+      "target_xyz_m": [
+        0.06999982686116368,
+        -2.0730049044290056e-10,
+        1.1219999082207226
+      ],
+      "target_normal": [
+        2.7755572978987915e-14,
+        -1.0,
+        1.4210853365241813e-11
+      ],
+      "target_segment_id": 55,
+      "target_s_m": 0.0,
+      "ik": {
+        "task_id": "surface1_to_surface2_base_end_to_l8_end",
+        "yaw_samples": 8,
+        "seeds_per_yaw": 8,
+        "normal_only_seeds": 32,
+        "raw_ik_attempts": 96,
+        "position_normal_converged_count": 9,
+        "unique_ik_branch_count": 9
+      },
+      "collision_free_endpoint_count": 3,
+      "collision_pair_counts": {
+        "left_link_1↔Tower": 5,
+        "right_link_1↔Tower": 5,
+        "right_link_2↔Tower": 4,
+        "left_joint_1↔Tower": 4,
+        "right_joint_2↔Tower": 4,
+        "left_link_1↔left_link_3": 2,
+        "left_link_1↔left_joint_3": 2
+      },
+      "best_collision_free": {
+        "q": [
+          0.8133482376733606,
+          -1.45439925970133,
+          -0.20722736586076373,
+          1.4334514218720138,
+          -1.4956541117303042,
+          0.9062154608864894,
+          0.13923344344605307,
+          -1.7839000754586616
+        ],
+        "mode": "normal_only",
+        "yaw_rad": 0.0,
+        "position_error_m": 6.318427737479317e-09,
+        "normal_error_deg": 0.0,
+        "collision": {
+          "pass": true,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "critical": null,
+          "bad_pairs": [],
+          "bad_pair_counts": {},
+          "self_collision": false,
+          "tower_collision": false
+        },
+        "joint_limit_margin_rad": 0.7927726341392363
+      },
+      "candidate_rows": [
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 1.5707963267948966,
+          "position_error_m": 2.9379214960129305e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.07990593553659678,
+          "critical_pair": "right_link_2↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.056129989200444985,
+          "q": [
+            -0.7113470032503334,
+            1.7142943146707372,
+            -0.11168490385273368,
+            1.862137641602574,
+            1.5542873218642517,
+            -0.8062135810862003,
+            0.19966676815059414,
+            3.083870010799555
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 2.356194490192345,
+          "position_error_m": 2.4525743760457074e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.07024750158427052,
+          "critical_pair": "right_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.5201691642319084,
+          "q": [
+            -0.5945589663940298,
+            1.861412697285849,
+            -0.4798308357680916,
+            1.9679980483637858,
+            1.470812208939403,
+            -0.8990533619813245,
+            0.33336901527662893,
+            2.4296802867269225
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.141592653589793,
+          "position_error_m": 1.1069376661565318e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.0687511484425198,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.08522582238867638,
+          "q": [
+            -0.5694951153354806,
+            1.9669195851681525,
+            -0.9147741776113236,
+            1.93199314190488,
+            1.0751534069691426,
+            -1.4509194180572982,
+            0.424222006004722,
+            2.068909650282326
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 6.318427737479317e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.7927726341392363,
+          "q": [
+            0.8133482376733606,
+            -1.45439925970133,
+            -0.20722736586076373,
+            1.4334514218720138,
+            -1.4956541117303042,
+            0.9062154608864894,
+            0.13923344344605307,
+            -1.7839000754586616
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 3.88107127038707e-13,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.08409166550822987,
+          "critical_pair": "right_link_2↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.16978278843593175,
+          "q": [
+            -0.7097950505613347,
+            1.7564027268555833,
+            -0.2006119453694367,
+            1.889743432538702,
+            1.6277628472190406,
+            -0.8125483111869612,
+            0.1543592133778684,
+            2.9702172115640684
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 8.596181171368689e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.048783823233936305,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.01942947248214033,
+          "q": [
+            1.066159360733657,
+            -2.517637121193687,
+            0.801385414725359,
+            1.8015905545006092,
+            -1.2123071676851178,
+            1.1433074483112322,
+            0.9805705275178597,
+            -2.163785342055565
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.3817341124241256e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.04732936124685246,
+          "critical_pair": "right_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.3936379545216522,
+          "q": [
+            -0.8872907435307534,
+            2.366767675562488,
+            -0.6063620454783478,
+            1.6926417409032257,
+            1.730114125556853,
+            -0.7225948450659847,
+            0.10337703006129141,
+            2.341139588807305
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.9298369617195285e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.017564807195917548,
+          "critical_pair": "left_link_1↔left_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.2051915845385367,
+          "q": [
+            0.962990327934278,
+            -2.0743319795714488,
+            0.32139415378100217,
+            1.5295500651696627,
+            1.4055927873075107,
+            -1.002629710905389,
+            -0.7948084154614633,
+            1.8309381922215862
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 3.566327737874851e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.006502794838146392,
+          "critical_pair": "right_link_1↔right_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.008129851056181359,
+          "q": [
+            -1.1404007866033183,
+            0.7269635207642953,
+            0.9918701489438186,
+            1.4613813542626566,
+            -1.4470685506846503,
+            2.220126622661354,
+            -0.17767061765945882,
+            1.7760111428086895
+          ]
+        }
+      ],
+      "refinement_attempts": 0,
+      "runtime_s": 103.129285546951,
+      "trajectory": {
+        "straight_success": true,
+        "rrt_success": false,
+        "failure": null,
+        "artifact": {
+          "npz": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface1_to_surface2_base_end_to_l8_end.npz",
+          "csv": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface1_to_surface2_base_end_to_l8_end.csv",
+          "method": "Straight",
+          "minimum_clearance_m": 0.02,
+          "planning_time_s": 2.329832734540105
+        }
+      },
+      "collision_free_q_goal_artifact": {
+        "path": "/home/song/projects/climbrobo/models/design_results/collision_free_q_goals/optimized_8r_axis8_task_1.npz",
+        "task_index": 1
+      }
+    },
+    {
+      "task_id": "surface2_to_surface1_l8_end_to_base_end",
+      "target_xyz_m": [
+        0.0016285776666451288,
+        0.06999996003949106,
+        1.122000185488565
+      ],
+      "target_normal": [
+        -0.9999999958856641,
+        -7.264577108190293e-08,
+        -9.071199780455458e-05
+      ],
+      "target_segment_id": 54,
+      "target_s_m": 0.0,
+      "ik": {
+        "task_id": "surface2_to_surface1_l8_end_to_base_end",
+        "yaw_samples": 8,
+        "seeds_per_yaw": 8,
+        "normal_only_seeds": 32,
+        "raw_ik_attempts": 96,
+        "position_normal_converged_count": 12,
+        "unique_ik_branch_count": 12
+      },
+      "collision_free_endpoint_count": 3,
+      "collision_pair_counts": {
+        "left_link_1↔Tower": 6,
+        "right_link_1↔Tower": 4,
+        "right_joint_1↔Tower": 4,
+        "right_link_1↔right_link_3": 2,
+        "left_link_2↔Tower": 4,
+        "left_joint_2↔Tower": 2
+      },
+      "best_collision_free": {
+        "q": [
+          -1.251374595965432,
+          1.3412232726069693,
+          -0.016655253539622127,
+          -1.826586849841097,
+          0.7283729534255187,
+          -1.0480787376076022,
+          -0.11562966535761621,
+          1.2660395666697033
+        ],
+        "mode": "normal_only",
+        "yaw_rad": 0.0,
+        "position_error_m": 3.8979315272681165e-09,
+        "normal_error_deg": 0.0,
+        "collision": {
+          "pass": true,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "critical": null,
+          "bad_pairs": [],
+          "bad_pair_counts": {},
+          "self_collision": false,
+          "tower_collision": false
+        },
+        "joint_limit_margin_rad": 0.8843703346423838
+      },
+      "candidate_rows": [
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.0121738944998039e-08,
+          "normal_error_deg": 1.6548098256002528,
+          "minimum_clearance_m": -0.008150596721486339,
+          "critical_pair": "right_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.19712216735747645,
+          "q": [
+            0.9729199850838882,
+            -1.11044720606449,
+            0.8028778326425235,
+            1.8292491210144834,
+            -0.735372382734617,
+            2.24006918025959,
+            -0.6159779258844038,
+            1.5849712285461983
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.141592653589793,
+          "position_error_m": 0.00021981144594221738,
+          "normal_error_deg": 0.003946775607906085,
+          "minimum_clearance_m": -0.009843497147085725,
+          "critical_pair": "right_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.18598041457111025,
+          "q": [
+            0.9733627286398727,
+            -1.1408784284654045,
+            0.8140195854288897,
+            1.849420295508351,
+            -0.7476836038839045,
+            2.2229742208460945,
+            -0.6349051584477591,
+            1.585544336130453
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.141592653589793,
+          "position_error_m": 2.239710473153257e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.003380083721454444,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.0012134786453911195,
+          "q": [
+            1.7729144434621837,
+            -1.152647944672774,
+            -0.12117688715242586,
+            1.984904173410036,
+            0.6967621803501625,
+            -2.239648340813413,
+            0.9987865213546089,
+            1.1670864889622663
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.9269908169872414,
+          "position_error_m": 3.1720027035533262e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.06314942918705506,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.19971262896805242,
+          "q": [
+            1.2664459502078886,
+            -0.7478394293593658,
+            0.8002873710319476,
+            2.426536958000033,
+            -0.6544135760827262,
+            2.0498914439413833,
+            -0.1415113744850341,
+            1.6423727150527714
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 4.71238898038469,
+          "position_error_m": 7.0076928190732806e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.3751909791773258,
+          "q": [
+            -1.9217949221572477,
+            0.9610211554565125,
+            -0.02270897100909514,
+            -2.1922682457544775,
+            1.324205444389428,
+            -1.0167774256135613,
+            -0.6248090208226742,
+            1.2759678468899858
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 4.71238898038469,
+          "position_error_m": 2.622916236936303e-15,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.08232413169086958,
+          "critical_pair": "left_link_2↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.0387576853248488,
+          "q": [
+            1.081213053166596,
+            -0.9540596302703839,
+            0.9389000255581312,
+            3.1012423146751513,
+            -0.7145200168304421,
+            1.3134381558252606,
+            0.2735341676046254,
+            1.82052493022959
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 4.71238898038469,
+          "position_error_m": 3.750063136674369e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.01477807035825869,
+          "critical_pair": "left_link_2↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.4981961662864651,
+          "q": [
+            -1.9489861908445734,
+            1.9356922364727054,
+            0.22745440408395373,
+            -2.641803833713535,
+            0.9192375714463539,
+            -0.6784869815866372,
+            0.08095123055496439,
+            1.126812466455567
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 5.497787143782138,
+          "position_error_m": 5.156378797384993e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.004496201198616073,
+          "critical_pair": "left_link_2↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.9664200464687965,
+          "q": [
+            -1.186588483880182,
+            1.8727213848157622,
+            -0.03357995353120347,
+            -2.1212651610121487,
+            0.6174716826486737,
+            -0.9628573258980605,
+            0.007203825635012864,
+            1.3548122486464593
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 3.8979315272681165e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.8843703346423838,
+          "q": [
+            -1.251374595965432,
+            1.3412232726069693,
+            -0.016655253539622127,
+            -1.826586849841097,
+            0.7283729534255187,
+            -1.0480787376076022,
+            -0.11562966535761621,
+            1.2660395666697033
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.2767364558677812e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.01012196942413627,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.19283163224895317,
+          "q": [
+            0.9943172798565237,
+            -1.0893073011662715,
+            0.8071683677510468,
+            1.8729192103372023,
+            -0.74336993032649,
+            2.237681722568151,
+            -0.6158983178884825,
+            1.5891791856978574
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.799166260655747e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.040579189863531845,
+          "critical_pair": "right_link_1↔right_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.31746416102760777,
+          "q": [
+            1.4947078895155161,
+            -1.313582073154041,
+            -0.6825358389723922,
+            1.8944811546974851,
+            0.756223785950327,
+            -1.6777180180843414,
+            0.5462347884165741,
+            1.1852031357800137
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.98926499267393e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.05314476440121658,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.5550381254590017,
+          "q": [
+            1.044712489023143,
+            -1.595635619400713,
+            -0.416746745623298,
+            -2.0232612850870595,
+            -0.5088609332780508,
+            1.6899861176188031,
+            -0.44496187454099834,
+            1.8401709476414312
+          ]
+        }
+      ],
+      "refinement_attempts": 0,
+      "runtime_s": 100.91623710654676,
+      "trajectory": {
+        "straight_success": false,
+        "rrt_success": true,
+        "failure": "left_joint_4↔Tower",
+        "rrt_stats": [
+          {
+            "seed": 20260816,
+            "iterations": 4,
+            "tree_nodes": 20,
+            "success": true
+          }
+        ],
+        "artifact": {
+          "npz": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface2_to_surface1_l8_end_to_base_end.npz",
+          "csv": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface2_to_surface1_l8_end_to_base_end.csv",
+          "method": "RRT-Connect",
+          "minimum_clearance_m": 0.004317280004870347,
+          "planning_time_s": 3.7460304144769907
+        }
+      },
+      "collision_free_q_goal_artifact": {
+        "path": "/home/song/projects/climbrobo/models/design_results/collision_free_q_goals/optimized_8r_axis8_task_2.npz",
+        "task_index": 2
+      }
+    },
+    {
+      "task_id": "surface2_to_surface2_l8_end_to_base_end",
+      "target_xyz_m": [
+        0.06999982686116368,
+        -2.0730049044290056e-10,
+        1.1219999082207226
+      ],
+      "target_normal": [
+        2.7755572978987915e-14,
+        -1.0,
+        1.4210853365241813e-11
+      ],
+      "target_segment_id": 55,
+      "target_s_m": 0.0,
+      "ik": {
+        "task_id": "surface2_to_surface2_l8_end_to_base_end",
+        "yaw_samples": 8,
+        "seeds_per_yaw": 8,
+        "normal_only_seeds": 32,
+        "raw_ik_attempts": 96,
+        "position_normal_converged_count": 23,
+        "unique_ik_branch_count": 23
+      },
+      "collision_free_endpoint_count": 6,
+      "collision_pair_counts": {
+        "left_link_1↔Tower": 6,
+        "right_link_1↔Tower": 7,
+        "left_joint_1↔Tower": 2,
+        "left_link_1↔left_link_3": 6,
+        "right_joint_1↔Tower": 1,
+        "central_body↔left_link_3": 4,
+        "left_link_1↔left_joint_3": 5,
+        "left_link_3↔left_joint_1": 4,
+        "right_link_2↔Tower": 2,
+        "right_joint_2↔Tower": 2,
+        "right_link_1↔right_joint_3": 5,
+        "left_link_2↔Tower": 3,
+        "central_body↔right_link_3": 3,
+        "central_body↔right_joint_4": 2,
+        "right_link_1↔right_link_3": 4,
+        "right_link_3↔right_joint_1": 3,
+        "right_joint_1↔right_joint_4": 3,
+        "left_joint_2↔Tower": 1,
+        "central_body↔left_joint_4": 3,
+        "left_joint_1↔left_joint_4": 2
+      },
+      "best_collision_free": {
+        "q": [
+          1.4694515756222672,
+          -0.4576497248957253,
+          0.129329569539694,
+          0.6057219104408001,
+          1.5047883501908268,
+          -1.0494871797739755,
+          0.07635978974583872,
+          0.9552409495170887
+        ],
+        "mode": "yaw_conditioned",
+        "yaw_rad": 3.141592653589793,
+        "position_error_m": 6.82544306801518e-10,
+        "normal_error_deg": 0.0,
+        "collision": {
+          "pass": true,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "critical": null,
+          "bad_pairs": [],
+          "bad_pair_counts": {},
+          "self_collision": false,
+          "tower_collision": false
+        },
+        "joint_limit_margin_rad": 0.870670430460306
+      },
+      "candidate_rows": [
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 0.0,
+          "position_error_m": 3.127241312360912e-08,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.06950146424919106,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.0004842866983401084,
+          "q": [
+            0.6108774376154091,
+            -1.9217953307158955,
+            0.9995157133016599,
+            -1.8798204793394975,
+            -0.37401703958722493,
+            0.5398569112038272,
+            -0.8202477816311288,
+            2.2713364042952495
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 0.7853981633974483,
+          "position_error_m": 7.879301628509445e-07,
+          "normal_error_deg": 8.954453545231656e-06,
+          "minimum_clearance_m": -0.03865014566959998,
+          "critical_pair": "right_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.23347314311571232,
+          "q": [
+            0.3301782375006204,
+            -2.2797018617847877,
+            0.6456256918420671,
+            -1.1591546115458866,
+            -0.7768406984028261,
+            1.0002634534895132,
+            -0.7665268568842877,
+            1.8093562685240605
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 1.5707963267948966,
+          "position_error_m": 2.270318030120427e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.061120010141318765,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.10657976093457822,
+          "q": [
+            0.48136472322096185,
+            -2.586779673125414,
+            0.7586916010134065,
+            -0.2683548581693457,
+            -1.3639890449368666,
+            1.2582250590120116,
+            -0.8934202390654218,
+            1.4924822670561269
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.141592653589793,
+          "position_error_m": 6.82544306801518e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.870670430460306,
+          "q": [
+            1.4694515756222672,
+            -0.4576497248957253,
+            0.129329569539694,
+            0.6057219104408001,
+            1.5047883501908268,
+            -1.0494871797739755,
+            0.07635978974583872,
+            0.9552409495170887
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.141592653589793,
+          "position_error_m": 7.663939630854228e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.06974856595204416,
+          "critical_pair": "right_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.6346934631616827,
+          "q": [
+            -1.6710943606086588,
+            0.8228639331875401,
+            0.14337422566599736,
+            2.3682133695301926,
+            -1.7067187346009638,
+            0.6585368335401699,
+            0.1893991625695456,
+            2.5053065368383174
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 3.9269908169872414,
+          "position_error_m": 8.75025091515366e-07,
+          "normal_error_deg": 2.8044872342683662e-05,
+          "minimum_clearance_m": -0.00442557238450246,
+          "critical_pair": "right_link_1↔right_joint_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.654871788325827,
+          "q": [
+            -2.463257517404139,
+            2.3256781955314425,
+            0.06545050411003298,
+            1.4732342715018978,
+            -0.8962311031472152,
+            2.348296457786916,
+            0.3451282116741729,
+            0.8056234229824311
+          ]
+        },
+        {
+          "mode": "yaw_conditioned",
+          "yaw_rad": 5.497787143782138,
+          "position_error_m": 3.2108622846571875e-08,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.08430562904703455,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.00016410309793779554,
+          "q": [
+            1.0251109432065308,
+            -0.9724924523631626,
+            0.9998358969020622,
+            -2.4737695191834055,
+            -0.2409596865157571,
+            1.0035334104539744,
+            -0.9970299195358141,
+            2.521695262035176
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 5.872204957347282e-12,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.04442781443845805,
+          "critical_pair": "left_joint_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.09463469735864494,
+          "q": [
+            0.5838487951192131,
+            -2.141305482825149,
+            0.9053653026413551,
+            -1.6544252243849007,
+            -0.4555575331614698,
+            0.5616045473872353,
+            -0.8032340327346644,
+            2.1724952883380957
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 4.5430933536228654e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.01886331767629884,
+          "critical_pair": "right_link_1↔right_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.1270909820502938,
+          "q": [
+            -0.41341258792861907,
+            0.6160403522280327,
+            0.6037215115028736,
+            -0.6656291232859356,
+            1.0330565547886459,
+            -2.0556240953609795,
+            -0.8729090179497062,
+            1.6817912274224578
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.5881350290456453e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.013464224157531415,
+          "critical_pair": "left_link_2↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 4.609966995960946e-05,
+          "q": [
+            3.1399539003300405,
+            -2.0362624660615265,
+            -0.10653141783347003,
+            2.5140156157072573,
+            1.0113465917686744,
+            -0.6185536997762334,
+            -0.1478761199007161,
+            1.1595001702739323
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.711744665090263e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.05,
+          "critical_pair": null,
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.7380941659202999,
+          "q": [
+            0.6710932540253146,
+            -0.8288878146574858,
+            -0.18313046071755007,
+            -0.11737050962509477,
+            1.6295853688466306,
+            -1.2449770780380411,
+            0.26190583407970014,
+            1.1172446306790695
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 4.0380553456491704e-07,
+          "normal_error_deg": 4.597711793052988e-06,
+          "minimum_clearance_m": -0.1356934902546841,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 6.83584023830619e-06,
+          "q": [
+            1.8508484916684733,
+            -0.9456767240133573,
+            -0.11540862628488004,
+            1.7157876306439006,
+            2.231325204529737,
+            3.139993164159762,
+            0.7827248930395253,
+            2.563085149520091
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.114191030632012e-09,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.09042044684071118,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.004243085905051958,
+          "q": [
+            1.2249964543023981,
+            -0.2851493059027996,
+            0.995756914094948,
+            3.123994224289338,
+            -0.4728315426632377,
+            1.700040588995914,
+            -0.9249453085124669,
+            2.273696453454978
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 6.552487125102374e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.045146609552487865,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.009811005119164884,
+          "q": [
+            -1.6731611517776788,
+            1.9368340954428418,
+            -0.610667321961877,
+            0.9126581335388025,
+            -2.4812238522641694,
+            2.486902993231424,
+            -0.9901889948808351,
+            0.6493157253585964
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.9309555339518426e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.005696346422691442,
+          "critical_pair": "left_link_1↔left_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.07451859279857198,
+          "q": [
+            -0.464961631715776,
+            2.230013938303402,
+            0.22600248321160046,
+            -0.7709958060003433,
+            -1.4549287068279124,
+            1.4701934748128382,
+            0.925481407201428,
+            1.2221651468720123
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 1.845549077143623e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.12593318813810245,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.1346881588494595,
+          "q": [
+            -2.2206550065054524,
+            -3.0053118411505406,
+            -0.07272181104405956,
+            1.1600963880554218,
+            -1.5666965446968364,
+            0.9223870244299476,
+            0.5324529857102158,
+            1.5892340233930973
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 6.941358168174101e-14,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.09099978631198402,
+          "critical_pair": "left_link_1↔Tower",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.16409194589075904,
+          "q": [
+            2.975908054109241,
+            1.5336838192922093,
+            -0.574403972961198,
+            2.644609714629112,
+            -0.7789601948848418,
+            1.6519892016136126,
+            0.0351792737420032,
+            1.539364740508722
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 9.330935753975525e-07,
+          "normal_error_deg": 1.325413123547268e-05,
+          "minimum_clearance_m": -0.10863340978729501,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.0019786912493706676,
+          "q": [
+            -0.9502249947466778,
+            1.0443238908590098,
+            -0.5075373487270299,
+            1.418571753530634,
+            -2.692015856224956,
+            2.8108379568518265,
+            -0.9980213087506293,
+            0.8205451378947956
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 4.05016824713407e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.1476016221261039,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.035464337866337736,
+          "q": [
+            -1.8286757017456234,
+            -3.1045356621336624,
+            -0.03340331545634321,
+            0.8041820786423878,
+            -1.551416798407434,
+            0.912199625737399,
+            0.1533957933775005,
+            1.632680310422429
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 3.619262531619652e-08,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.0006884876334425222,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.020949894953918524,
+          "q": [
+            -0.37820883861387117,
+            1.3039456023004108,
+            -0.9539287752267758,
+            1.5724948449111498,
+            -2.6206203999872613,
+            2.2135764299182936,
+            -0.9790501050460815,
+            1.1361042026033348
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 5.2926058659073916e-11,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": 0.011301997764527727,
+          "critical_pair": "right_link_1↔right_joint_3",
+          "collision_free": true,
+          "joint_limit_margin_rad": 0.579858639472238,
+          "q": [
+            0.8578972802180279,
+            -0.2888314062151271,
+            -0.3331443984889658,
+            -0.9977746477191144,
+            1.563405007637559,
+            -2.1594432865918884,
+            0.4201413605277619,
+            1.564087716733155
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 2.100287185411285e-10,
+          "normal_error_deg": 0.0,
+          "minimum_clearance_m": -0.1416920630751941,
+          "critical_pair": "left_link_1↔left_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 0.023629361380808955,
+          "q": [
+            2.107456416488005,
+            3.116370638619191,
+            0.3498605780678808,
+            2.628497904495355,
+            1.564162222029047,
+            -0.8410252902756234,
+            -0.09856546673782808,
+            1.571024616951619
+          ]
+        },
+        {
+          "mode": "normal_only",
+          "yaw_rad": 0.0,
+          "position_error_m": 3.4733720677188314e-07,
+          "normal_error_deg": 3.91248236030638e-06,
+          "minimum_clearance_m": -0.13574970443216475,
+          "critical_pair": "right_link_1↔right_link_3",
+          "collision_free": false,
+          "joint_limit_margin_rad": 1.0699729157348514e-05,
+          "q": [
+            -1.847250663458619,
+            0.9357701932362656,
+            0.07290783746680055,
+            1.7118708051628875,
+            -2.230758775483644,
+            -3.1399893002708428,
+            -0.780360624642424,
+            0.6929396075677193
+          ]
+        }
+      ],
+      "refinement_attempts": 0,
+      "runtime_s": 97.83680739346892,
+      "trajectory": {
+        "straight_success": false,
+        "rrt_success": true,
+        "failure": "left_joint_4↔Tower",
+        "rrt_stats": [
+          {
+            "seed": 20260816,
+            "iterations": 4,
+            "tree_nodes": 16,
+            "success": true
+          }
+        ],
+        "artifact": {
+          "npz": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface2_to_surface2_l8_end_to_base_end.npz",
+          "csv": "/home/song/projects/climbrobo/models/design_results/trajectories/optimized_8r_axis8_surface2_to_surface2_l8_end_to_base_end.csv",
+          "method": "RRT-Connect",
+          "minimum_clearance_m": 0.011171343816624393,
+          "planning_time_s": 3.4094625851139426
+        }
+      },
+      "collision_free_q_goal_artifact": {
+        "path": "/home/song/projects/climbrobo/models/design_results/collision_free_q_goals/optimized_8r_axis8_task_3.npz",
+        "task_index": 3
+      }
+    }
+  ],
+  "generated": {
+    "dimension_csv": "/home/song/projects/climbrobo/models/design_results/collision_proxy_dimensions.csv",
+    "plot_paths": [
+      "/home/song/projects/climbrobo/models/design_results/plots/collision_model_optimized_8r_isometric.png",
+      "/home/song/projects/climbrobo/models/design_results/plots/collision_model_optimized_8r_side.png"
+    ],
+    "report_path": "/home/song/projects/climbrobo/docs/collision_proxy_and_collision_aware_ik.md",
+    "q_goal_dir": "/home/song/projects/climbrobo/models/design_results/q_goals",
+    "trajectory_dir": "/home/song/projects/climbrobo/models/design_results/trajectories",
+    "collision_free_q_goal_dir": "/home/song/projects/climbrobo/models/design_results/collision_free_q_goals"
+  },
+  "search_config": {
+    "yaw_samples": 8,
+    "seeds_per_yaw": 8,
+    "normal_only_seeds": 32,
+    "normal_max_nfev": 400,
+    "random_seed": 20260816,
+    "branch_dedup_rad": 0.001,
+    "refinement_top": 2,
+    "refinement_maxiter": 12,
+    "rrt_max_iterations": 1200,
+    "rrt_seed_count": 2,
+    "rrt_step_size_rad": 0.2,
+    "rrt_edge_resolution_rad": 0.08
+  }
+}

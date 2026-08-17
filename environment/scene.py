@@ -212,6 +212,7 @@ class PyBulletScene:
         base_suction_frame: SuctionFrame,
         end_suction_frame: SuctionFrame,
         base_link_index: int = -1,
+        base_suction_link_index: int | None = None,
     ) -> float:
         """
         根据URDF关节origin估算两个吸盘中心的最大可能距离上界。
@@ -222,10 +223,22 @@ class PyBulletScene:
         distance = float(np.linalg.norm(base_suction_frame.position))
         distance += float(np.linalg.norm(end_suction_frame.position))
 
-        # 当前模型的两只吸盘位于串联链两端。根据实际传入的支撑端和
-        # 运动端，沿二者中位于末端的那一侧向根部累计URDF关节origin。
-        link_index = end_link_index if end_link_index != -1 else base_link_index
-        stop_index = base_link_index if end_link_index != -1 else end_link_index
+        # 当前模型的两只吸盘位于串联链两端。运动端是base_link时，
+        # 不能因为它本身没有父关节就漏掉整条J1~J8链；此时从支撑端
+        # 的link反向累计到URDF base。调用方应显式传入支撑吸盘所在link。
+        if end_link_index == base_link_index:
+            if base_suction_link_index is None:
+                # 兼容旧调用：该机器人只有一条完整串联链，累加全部URDF关节origin。
+                distance += sum(
+                    float(np.linalg.norm(origin))
+                    for origin in self.joint_origin_by_child.values()
+                )
+                return distance
+            link_index = int(base_suction_link_index)
+            stop_index = base_link_index
+        else:
+            link_index = end_link_index
+            stop_index = base_link_index
         while link_index != stop_index and link_index != -1:
             if link_index not in self.parent_link_by_child:
                 break

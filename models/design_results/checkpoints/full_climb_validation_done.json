@@ -1,0 +1,15 @@
+{
+  "baseline": true,
+  "six_r": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "optimized_8r": true,
+  "axis_architecture": true,
+  "first_edge_reports": 5,
+  "robustness": true,
+  "torque": true,
+  "whole_tower_complete": false
+}

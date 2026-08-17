@@ -1,0 +1,9 @@
+component,source_geometry,proxy_type,kinematic_length,physical_proxy_length,nominal_radius_m,safety_inflation_m,effective_radius_m,source_derivation
+link_1,L3.STL + L5.STL,Capsule,design variable L1/L2/L3/L4,current parameterized segment length,0.06432821157554557,0.005,0.06932821157554557,"PCA main axis; max orthogonal extent / 2, mirrored pair max"
+link_2,L2.STL + L6.STL,Capsule,design variable L1/L2/L3/L4,current parameterized segment length,0.08119897808583824,0.005,0.08619897808583825,"PCA main axis; max orthogonal extent / 2, mirrored pair max"
+link_3,L1.STL + L7.STL,Capsule,design variable L1/L2/L3/L4,current parameterized segment length,0.0819418995254785,0.005,0.08694189952547851,"PCA main axis; max orthogonal extent / 2, mirrored pair max"
+terminal,base_link.STL + L8.STL,endpoint mesh / optional terminal capsule,design variable L1/L2/L3/L4,current parameterized segment length,0.062049541187450166,0.005,0.06704954118745017,"PCA main axis; max orthogonal extent / 2, mirrored pair max"
+joint_1,L4.STL + L5.STL,Sphere,point at joint center,n/a,0.04,0.005,0.045,"local STL 99th-percentile upper bound, capped at 40 mm raw because motor housing is not separable in the STL; mirrored pair and baseline joint-spacing audit"
+joint_2,L3.STL + L6.STL,Sphere,point at joint center,n/a,0.04,0.005,0.045,"local STL 99th-percentile upper bound, capped at 40 mm raw because motor housing is not separable in the STL; mirrored pair and baseline joint-spacing audit"
+joint_3,L2.STL + L7.STL,Sphere,point at joint center,n/a,0.04,0.005,0.045,"local STL 99th-percentile upper bound, capped at 40 mm raw because motor housing is not separable in the STL; mirrored pair and baseline joint-spacing audit"
+joint_4,L1.STL + L8.STL,Sphere,point at joint center,n/a,0.04,0.005,0.045,"local STL 99th-percentile upper bound, capped at 40 mm raw because motor housing is not separable in the STL; mirrored pair and baseline joint-spacing audit"

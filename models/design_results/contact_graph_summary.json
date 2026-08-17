@@ -1,0 +1,14 @@
+{
+  "surface1": {
+    "node_count": 136,
+    "min_z_m": 0.07200100957142253,
+    "max_z_m": 37.854998774802745,
+    "segment_count": 56
+  },
+  "surface2": {
+    "node_count": 133,
+    "min_z_m": 0.0720007236634882,
+    "max_z_m": 37.85948340941761,
+    "segment_count": 57
+  }
+}

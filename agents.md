@@ -4,12 +4,19 @@
 
 本项目使用 PyBullet 开展八轴双端吸附爬塔机器人的运动学、碰撞检测和轨迹规划研究。
 
-当前阶段的目标是先实现单步运动：
+当前规划阶段已经从单步诊断转入任务驱动机构设计；已有单步结果仍作为基线和回归数据。当前目标是比较对称6R与对称8R，并最终验证整塔连续爬行：
 
 1. 一个吸盘固定在铁塔附着点；
 2. 另一个吸盘运动到最远可达的候选附着点；
 3. 运动全过程满足关节限位和碰撞约束；
 4. 在 PyBullet GUI 中显示机器人、铁塔、吸盘坐标系和运动轨迹。
+
+机构设计阶段的额外约束：
+
+* 只研究`3R + central body + mirrored 3R`和`4R + central body + mirrored 4R`；7R不是本项目候选；
+* 中央本体必须保留真实`L4.STL`mesh，Tower必须使用真实`Tower.STL`碰撞模型；
+* 新连杆可以在没有CAD时使用有半径的Capsule代理，不能使用零半径线段；
+* 设计评价以真实attach-line任务和连续contact-state graph为目标，不以workspace体积为最终目标；
 
 ## 目录说明
 
@@ -59,7 +66,7 @@ URDF运动链为：
 * Y轴：由 `y_reference` 投影并正交化后获得；
 * X轴：按照右手坐标系计算；
 * 不得在不同脚本中重复硬编码吸盘位置和法向。
-* 总共存在两个附着面，每个附着面上存在若干附着点，也就是吸盘原点可以去重合的点，但每个吸盘始终只能附着一个附着面上的点，两个吸盘各自对应一个附着面。
+* 总共存在两个附着面：`surface1`和`surface2`。`base_end`与`l8_end`是两个独立的物理磁吸端，任意一个端都可以附着任意一个表面；是否可行由目标法向、运动学、碰撞和轨迹约束共同决定。旧数据文件名`foot1/foot2`仅作为`surface1/surface2`的兼容命名，不再表示物理端绑定。
 * 吸盘Z轴是由吸附面向外的，附着点法向是由附着面向外的，吸附的时候两者是反向的。
 
 ## 编程要求
@@ -86,6 +93,8 @@ URDF运动链为：
 6. 检查 `git diff`；
 7. 最终说明修改内容、运行命令、验证结果和未解决问题。
 
+当规划体系、运动学假设、附着策略、重要验证结果或关键文件结构发生实质变化时，应同步更新`docs/planning_history.md`。只记录重要变化，不记录琐碎调试过程。
+
 ## Git要求
 
 * 开始修改前检查 `git status`；
@@ -93,3 +102,13 @@ URDF运动链为：
 * 不自动提交或推送；
 * 不使用破坏性Git命令；
 * 完成后由用户审核并自行提交。
+
+## Autonomous morphology research
+
+When working on robot morphology / whole-tower climbing research:
+
+1. Read `/AUTONOMOUS_MORPHOLOGY_RESEARCH.md` before making design or planning decisions.
+2. Read and update `/docs/morphology_research_status.md`.
+3. Resume from existing checkpoints instead of repeating completed expensive experiments.
+4. Important research results must also be reflected in `/docs/planning_history.md`.
+5. Do not declare morphology infeasibility from a single IK, RRT, contact route, or optimizer failure.

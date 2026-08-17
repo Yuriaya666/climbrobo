@@ -8,6 +8,8 @@ from pathlib import Path
 
 import numpy as np
 
+from environment.attachment_semantics import canonical_surface_name
+
 
 @dataclass(frozen=True)
 class SavedTrajectory:
@@ -36,6 +38,9 @@ class SavedTrajectory:
     moving_frame_name: str = "l8_end"
     base_position_m: np.ndarray | None = None
     base_orientation_xyzw: np.ndarray | None = None
+    # 新语义：物理机器人端与附着面分开保存；旧轨迹缺失时沿用历史默认映射。
+    support_surface_name: str = "surface1"
+    target_surface_name: str = "surface2"
 
     def validate(self) -> None:
         trajectory = np.asarray(self.trajectory_rad, dtype=float)
@@ -60,6 +65,8 @@ class SavedTrajectory:
             raise ValueError(f"轨迹单位应为m/rad，实际为{self.unit!r}")
         if not self.trajectory_method:
             raise ValueError("trajectory_method不能为空")
+        canonical_surface_name(self.support_surface_name)
+        canonical_surface_name(self.target_surface_name)
         for name in ("support_foot_name", "moving_foot_name", "support_frame_name", "moving_frame_name"):
             if not getattr(self, name):
                 raise ValueError(f"{name}不能为空")
@@ -99,6 +106,8 @@ class SavedTrajectory:
             moving_foot_name=np.asarray(self.moving_foot_name),
             support_frame_name=np.asarray(self.support_frame_name),
             moving_frame_name=np.asarray(self.moving_frame_name),
+            support_surface_name=np.asarray(self.support_surface_name),
+            target_surface_name=np.asarray(self.target_surface_name),
         )
         if self.base_position_m is not None:
             # base轨迹是变基座回放所需的附加数据，旧文件不受影响。
@@ -131,6 +140,16 @@ class SavedTrajectory:
         missing = sorted(required - set(data.files))
         if missing:
             raise ValueError(f"{npz_path}缺少轨迹字段：{missing}")
+        support_foot_name = (
+            str(data["support_foot_name"].item())
+            if "support_foot_name" in data
+            else "foot1"
+        )
+        moving_foot_name = (
+            str(data["moving_foot_name"].item())
+            if "moving_foot_name" in data
+            else "foot2"
+        )
         result = cls(
             trajectory_rad=np.asarray(data["trajectory_rad"], dtype=float),
             joint_names=tuple(str(value) for value in data["joint_names"].tolist()),
@@ -149,12 +168,22 @@ class SavedTrajectory:
             trajectory_method=str(data["trajectory_method"].item()),
             unit=str(data["unit"].item()),
             coordinate_frame=str(data["coordinate_frame"].item()),
-            support_foot_name=str(data["support_foot_name"].item()) if "support_foot_name" in data else "foot1",
-            moving_foot_name=str(data["moving_foot_name"].item()) if "moving_foot_name" in data else "foot2",
+            support_foot_name=support_foot_name,
+            moving_foot_name=moving_foot_name,
             support_frame_name=str(data["support_frame_name"].item()) if "support_frame_name" in data else "base_end",
             moving_frame_name=str(data["moving_frame_name"].item()) if "moving_frame_name" in data else "l8_end",
             base_position_m=np.asarray(data["base_position_m"], dtype=float) if "base_position_m" in data else None,
             base_orientation_xyzw=np.asarray(data["base_orientation_xyzw"], dtype=float) if "base_orientation_xyzw" in data else None,
+            support_surface_name=(
+                str(data["support_surface_name"].item())
+                if "support_surface_name" in data
+                else canonical_surface_name(support_foot_name)
+            ),
+            target_surface_name=(
+                str(data["target_surface_name"].item())
+                if "target_surface_name" in data
+                else canonical_surface_name(moving_foot_name)
+            ),
         )
         result.validate()
         return result

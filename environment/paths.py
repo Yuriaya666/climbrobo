@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+from environment.attachment_semantics import legacy_surface_file_name
+
 
 @dataclass(frozen=True)
 class ProjectPaths:
@@ -52,6 +54,11 @@ class ProjectPaths:
         """连续附着线NPZ路径，不影响旧候选点文件。"""
 
         return self.candidate_dir / f"{foot_name}_attach_lines.npz"
+
+    def attach_lines_for_surface_npz(self, surface_name: str) -> Path:
+        """按surface语义读取现有foot1/foot2命名的中心线文件。"""
+
+        return self.attach_lines_npz(legacy_surface_file_name(surface_name))
 
     @property
     def successful_trajectory_npz(self) -> Path:
@@ -148,6 +155,54 @@ class ProjectPaths:
         """独立position-only工作空间测试的汇总NPZ。"""
 
         return self.candidate_dir / "position_workspace_test.npz"
+
+    @property
+    def same_surface_test_a_npz(self) -> Path:
+        """Test A成功轨迹：l8_end从surface2移动到surface1。"""
+
+        return self.candidate_dir / "same_surface_test_A_l8_to_surface1.npz"
+
+    @property
+    def same_surface_test_a_csv(self) -> Path:
+        """Test A逐状态关节角CSV表格。"""
+
+        return self.candidate_dir / "same_surface_test_A_l8_to_surface1.csv"
+
+    @property
+    def same_surface_test_b_npz(self) -> Path:
+        """Test B成功轨迹：base_end从surface1移动到surface2。"""
+
+        return self.candidate_dir / "same_surface_test_B_base_to_surface2.npz"
+
+    @property
+    def same_surface_test_b_csv(self) -> Path:
+        """Test B逐状态关节角CSV表格。"""
+
+        return self.candidate_dir / "same_surface_test_B_base_to_surface2.csv"
+
+    @property
+    def same_surface_test_a_diagnostics_csv(self) -> Path:
+        """Test A目标IK和规划诊断CSV表格。"""
+
+        return self.candidate_dir / "same_surface_test_A_diagnostics.csv"
+
+    @property
+    def same_surface_test_a_best_ik_npz(self) -> Path:
+        """Test A位置误差最小的失败IK构型。"""
+
+        return self.candidate_dir / "same_surface_test_A_best_ik.npz"
+
+    @property
+    def same_surface_test_b_diagnostics_csv(self) -> Path:
+        """Test B目标IK和规划诊断CSV表格。"""
+
+        return self.candidate_dir / "same_surface_test_B_diagnostics.csv"
+
+    @property
+    def same_surface_test_b_best_ik_npz(self) -> Path:
+        """Test B位置误差最小的失败IK构型。"""
+
+        return self.candidate_dir / "same_surface_test_B_best_ik.npz"
 
     def validate_required_files(self) -> None:
         """在真正加载PyBullet前先给出清楚的缺失文件错误。"""

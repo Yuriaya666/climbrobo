@@ -1,0 +1,150 @@
+{
+  "task_id": "surface1_to_surface1_base_end_to_l8_end",
+  "q_goal_path": "/home/song/projects/climbrobo/models/design_results/diagnostics/legacy_seed_20260815_task0_q.npz",
+  "q": [
+    -1.5744812637779728,
+    0.9667637699182935,
+    0.06926464129031118,
+    1.6116399139130482,
+    -2.2239076392833765,
+    -3.1322790502209523,
+    -0.590534125621491,
+    0.6695757688609166
+  ],
+  "position_error_m": 2.6723326381240587e-10,
+  "normal_error_deg": 0.0,
+  "legacy_report_proxy_pair": {
+    "link_a": "central_body",
+    "link_b": "right_link_3",
+    "distance_m": -0.06526465342358519,
+    "penetration_m": 0.06526465342358519,
+    "allowed_adjacent": false,
+    "point_on_a_m": [
+      -0.27732073903687404,
+      0.047211512111776446,
+      1.0624266500252724
+    ],
+    "point_on_b_m": [
+      -0.2516023414265334,
+      0.07725890358341606,
+      1.0105113991195207
+    ],
+    "normal_on_b": [
+      0.3940631913483286,
+      0.4603930289282921,
+      -0.7954573905235929
+    ]
+  },
+  "radius_sweep": [
+    {
+      "raw_link_proxy_radius_m": 0.001,
+      "collision_inflation_m": 0.0,
+      "clearance_m": 0.003735346576414807,
+      "pair": {
+        "link_a": "central_body",
+        "link_b": "right_link_3",
+        "distance_m": 0.003735346576414807,
+        "penetration_m": 0.0,
+        "allowed_adjacent": false,
+        "point_on_a_m": [
+          -0.2773207390368734,
+          0.047211512111776405,
+          1.0624266500252726
+        ],
+        "point_on_b_m": [
+          -0.2787927016295499,
+          0.04549178458737227,
+          1.0653979590656624
+        ],
+        "normal_on_b": [
+          0.39406319134362633,
+          0.460393028926043,
+          -0.7954573905272239
+        ]
+      }
+    },
+    {
+      "raw_link_proxy_radius_m": 0.02,
+      "collision_inflation_m": 0.0,
+      "clearance_m": -0.015264653423585166,
+      "pair": {
+        "link_a": "central_body",
+        "link_b": "right_link_3",
+        "distance_m": -0.015264653423585166,
+        "penetration_m": 0.015264653423585166,
+        "allowed_adjacent": false,
+        "point_on_a_m": [
+          -0.27732073903687376,
+          0.04721151211177643,
+          1.0624266500252724
+        ],
+        "point_on_b_m": [
+          -0.27130550099395,
+          0.054239252137000746,
+          1.0502842686456997
+        ],
+        "normal_on_b": [
+          0.39406319134830137,
+          0.4603930289282471,
+          -0.7954573905236321
+        ]
+      }
+    },
+    {
+      "raw_link_proxy_radius_m": 0.04,
+      "collision_inflation_m": 0.0,
+      "clearance_m": -0.03526465342358519,
+      "pair": {
+        "link_a": "central_body",
+        "link_b": "right_link_3",
+        "distance_m": -0.03526465342358519,
+        "penetration_m": 0.03526465342358519,
+        "allowed_adjacent": false,
+        "point_on_a_m": [
+          -0.2773207390368737,
+          0.04721151211177643,
+          1.0624266500252724
+        ],
+        "point_on_b_m": [
+          -0.26342423716698615,
+          0.06344711271556452,
+          1.0343751208352252
+        ],
+        "normal_on_b": [
+          0.39406319134823864,
+          0.460393028928214,
+          -0.7954573905236825
+        ]
+      }
+    },
+    {
+      "raw_link_proxy_radius_m": 0.065,
+      "collision_inflation_m": 0.0,
+      "clearance_m": -0.0602646534235852,
+      "pair": {
+        "link_a": "central_body",
+        "link_b": "right_link_3",
+        "distance_m": -0.0602646534235852,
+        "penetration_m": 0.0602646534235852,
+        "allowed_adjacent": false,
+        "point_on_a_m": [
+          -0.27732073903687415,
+          0.04721151211177646,
+          1.0624266500252721
+        ],
+        "point_on_b_m": [
+          -0.2535726573832991,
+          0.07495693843876415,
+          1.0144886860721205
+        ],
+        "normal_on_b": [
+          0.3940631913479319,
+          0.46039302892811845,
+          -0.7954573905238896
+        ]
+      }
+    }
+  ],
+  "classification": "PROXY_TOO_CONSERVATIVE",
+  "interpretation": "J7->J8 centerline clears the central mesh at near-zero radius; the reported penetration is caused by the capsule envelope."
+}

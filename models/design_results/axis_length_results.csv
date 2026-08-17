@@ -1,0 +1,2 @@
+architecture_id,de_nfev,de_nit,lengths_m,normal_success_count,task_count,task_failure_types,worst_goal_residual_m,worst_normal_error_deg,worst_position_error_m
+yaw_pitch_yaw_pitch,16,1,"[0.1285009595953319, 0.0994091377324163, 0.2817965808872167, 0.18227821320938972]",2,4,"{'surface1_to_surface1_base_end_to_l8_end': 'NORMAL_WORKSPACE', 'surface2_to_surface2_l8_end_to_base_end': 'NORMAL_WORKSPACE'}",0.15707963366186173,180.0,7.71791619063262e-11

@@ -1,0 +1,2 @@
+lengths_m,position_success_count,task_count,task_failure_types,task_success_count,worst_goal_residual_m,worst_normal_error_deg,worst_position_error_m
+"[np.float64(0.16443844), np.float64(0.09670186), np.float64(0.18784169), np.float64(0.16008543)]",0,4,"{'surface1_to_surface1_base_end_to_l8_end': 'POSITION_WORKSPACE', 'surface1_to_surface2_base_end_to_l8_end': 'POSITION_WORKSPACE', 'surface2_to_surface1_l8_end_to_base_end': 'POSITION_WORKSPACE', 'surface2_to_surface2_l8_end_to_base_end': 'POSITION_WORKSPACE'}",0,0.5921338154594501,172.33640220523344,0.11885757197167597

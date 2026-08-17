@@ -1,0 +1,58 @@
+{
+  "surface1_to_surface1_base_end_to_l8_end": {
+    "position_error_m": 0.029357424331577252,
+    "normal_error_deg": 9.415772015104103,
+    "position_success": false,
+    "normal_success": false,
+    "failure_type": "POSITION_WORKSPACE",
+    "target_segment_id": 54,
+    "target_s_m": 0.0,
+    "target_xyz_m": [
+      0.0016285776666451288,
+      0.06999996003949106,
+      1.122000185488565
+    ]
+  },
+  "surface1_to_surface2_base_end_to_l8_end": {
+    "position_error_m": 0.04372176665595358,
+    "normal_error_deg": 2.196584941103568,
+    "position_success": false,
+    "normal_success": false,
+    "failure_type": "POSITION_WORKSPACE",
+    "target_segment_id": 55,
+    "target_s_m": 0.0,
+    "target_xyz_m": [
+      0.06999982686116368,
+      -2.0730049044290056e-10,
+      1.1219999082207226
+    ]
+  },
+  "surface2_to_surface1_l8_end_to_base_end": {
+    "position_error_m": 0.041870239006783765,
+    "normal_error_deg": 2.146629506884248,
+    "position_success": false,
+    "normal_success": false,
+    "failure_type": "POSITION_WORKSPACE",
+    "target_segment_id": 54,
+    "target_s_m": 0.0,
+    "target_xyz_m": [
+      0.0016285776666451288,
+      0.06999996003949106,
+      1.122000185488565
+    ]
+  },
+  "surface2_to_surface2_l8_end_to_base_end": {
+    "position_error_m": 0.026433920182760366,
+    "normal_error_deg": 9.402416390111902,
+    "position_success": false,
+    "normal_success": false,
+    "failure_type": "POSITION_WORKSPACE",
+    "target_segment_id": 55,
+    "target_s_m": 0.0,
+    "target_xyz_m": [
+      0.06999982686116368,
+      -2.0730049044290056e-10,
+      1.1219999082207226
+    ]
+  }
+}

@@ -16,6 +16,7 @@ from shapely.geometry import GeometryCollection, LineString, MultiLineString, Mu
 from shapely.ops import unary_union
 
 from environment.attach_lines import AttachLineSet
+from environment.attachment_semantics import canonical_surface_name
 from environment.paths import ProjectPaths
 from environment.transforms import normalize
 
@@ -221,6 +222,7 @@ def build_attach_line_set(
     surface: SurfaceDefinition,
     *,
     foot_name: str,
+    surface_name: str | None = None,
     sample_spacing_m: float = 0.01,
     shrink_distance_m: float = 0.062,
 ) -> AttachLineSet:
@@ -257,6 +259,7 @@ def build_attach_line_set(
         polyline_s_m=np.concatenate(s_parts, axis=0),
         unit="m",
         coordinate_frame="tower_stl_global",
+        surface_name=surface_name or canonical_surface_name(foot_name),
     )
 
 

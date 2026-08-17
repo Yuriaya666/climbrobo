@@ -1,0 +1,1 @@
+segment_id,s_m,x_m,y_m,z_m,yaw_rad,vertical_progress_m,IK_position_error_m,IK_normal_error_deg,failure_reason,trajectory_method,planning_time_s

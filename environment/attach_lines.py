@@ -12,6 +12,10 @@ from pathlib import Path
 import numpy as np
 
 from environment.transforms import normalize
+from environment.attachment_semantics import (
+    SURFACE_TO_LEGACY_FOOT,
+    canonical_surface_name,
+)
 
 
 @dataclass(frozen=True)
@@ -27,7 +31,10 @@ class AttachLineSample:
 
 @dataclass(frozen=True)
 class AttachLineSet:
-    """一只吸附端的若干连续可附着线段。"""
+    """一个附着面的若干连续可附着线段。
+
+    ``foot_name``保留用于读取旧NPZ；规划语义使用独立的``surface_name``。
+    """
 
     foot_name: str
     segment_ids: np.ndarray
@@ -39,6 +46,7 @@ class AttachLineSet:
     unit: str
     coordinate_frame: str
     source_path: Path | None = None
+    surface_name: str = ""
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "segment_ids", np.asarray(self.segment_ids, dtype=np.int32))
@@ -47,6 +55,8 @@ class AttachLineSet:
         object.__setattr__(self, "polyline_normal", np.asarray(self.polyline_normal, dtype=float))
         object.__setattr__(self, "polyline_uv_m", np.asarray(self.polyline_uv_m, dtype=float))
         object.__setattr__(self, "polyline_s_m", np.asarray(self.polyline_s_m, dtype=float))
+        surface = self.surface_name or self.foot_name
+        object.__setattr__(self, "surface_name", canonical_surface_name(surface))
         self.validate()
 
     @property
@@ -157,23 +167,30 @@ class AttachLineSet:
             unit=np.asarray(self.unit),
             coordinate_frame=np.asarray(self.coordinate_frame),
             foot_name=np.asarray(self.foot_name),
+            surface_name=np.asarray(self.surface_name),
         )
 
     @classmethod
-    def load_npz(cls, path: Path, expected_foot_name: str) -> "AttachLineSet":
+    def load_npz(cls, path: Path, expected_surface_name: str | None = None) -> "AttachLineSet":
         if not path.exists():
             raise FileNotFoundError(f"找不到连续附着线文件：{path}（新连续落点数据）")
         data = np.load(path, allow_pickle=False)
         required = {
             "segment_ids", "offsets", "polyline_xyz_m", "polyline_normal",
-            "polyline_uv_m", "polyline_s_m", "unit", "coordinate_frame", "foot_name",
+            "polyline_uv_m", "polyline_s_m", "unit", "coordinate_frame",
         }
         missing = sorted(required - set(data.files))
         if missing:
             raise ValueError(f"{path}缺少字段：{missing}")
-        foot_name = str(data["foot_name"].item())
-        if foot_name != expected_foot_name:
-            raise ValueError(f"{path}应对应{expected_foot_name}，实际为{foot_name}")
+        foot_name = str(data["foot_name"].item()) if "foot_name" in data else ""
+        surface_name = str(data["surface_name"].item()) if "surface_name" in data else foot_name
+        surface_name = canonical_surface_name(surface_name)
+        if not foot_name:
+            foot_name = SURFACE_TO_LEGACY_FOOT[surface_name]
+        if expected_surface_name is not None:
+            expected = canonical_surface_name(expected_surface_name)
+            if surface_name != expected:
+                raise ValueError(f"{path}应对应{expected}，实际为{surface_name}")
         return cls(
             foot_name=foot_name,
             segment_ids=data["segment_ids"],
@@ -185,4 +202,5 @@ class AttachLineSet:
             unit=str(data["unit"].item()),
             coordinate_frame=str(data["coordinate_frame"].item()),
             source_path=path,
+            surface_name=surface_name,
         )

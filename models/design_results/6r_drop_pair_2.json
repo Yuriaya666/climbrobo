@@ -1,0 +1,47 @@
+{
+  "name": "6R_DROP_PAIR_2",
+  "topology_id": "6r_drop_pair_2",
+  "dof": 6,
+  "per_side_dof": 3,
+  "remove_pair_index": 2,
+  "link_lengths_m": [
+    0.17312149650509542,
+    0.14779353503964343,
+    0.282071729307662
+  ],
+  "nominal_link_lengths_m": [
+    0.16443843832875582,
+    0.09670186140917891,
+    0.16008542500802503
+  ],
+  "bounds": [
+    [
+      0.09866306299725348,
+      0.29598918899176047
+    ],
+    [
+      0.05802111684550734,
+      0.17406335053652205
+    ],
+    [
+      0.09605125500481501,
+      0.28815376501444506
+    ]
+  ],
+  "task_success_count": 0,
+  "task_count": 4,
+  "position_success_count": 0,
+  "worst_position_error_m": 0.26936494532684035,
+  "worst_normal_error_deg": 9.55880734293612,
+  "task_failure_types": {
+    "surface1_to_surface1_base_end_to_l8_end": "POSITION_WORKSPACE",
+    "surface1_to_surface2_base_end_to_l8_end": "POSITION_WORKSPACE",
+    "surface2_to_surface1_l8_end_to_base_end": "POSITION_WORKSPACE",
+    "surface2_to_surface2_l8_end_to_base_end": "POSITION_WORKSPACE"
+  },
+  "runtime_s": 32.52047482505441,
+  "de_seed": 20260815,
+  "de_nfev": 18,
+  "de_nit": 1,
+  "boundary_hits": []
+}

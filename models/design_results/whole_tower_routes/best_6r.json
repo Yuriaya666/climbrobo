@@ -1,0 +1,76 @@
+{
+  "design_name": "6R_DROP_PAIR_3",
+  "initial_height_m": 0.2519528734400398,
+  "first_edge_success_count": 0,
+  "task_count": 4,
+  "maximum_verified_height_m": 0.2519528734400398,
+  "first_disconnected_region": {
+    "task_id": "surface1_to_surface1_base_end_to_l8_end",
+    "status": "FAILED",
+    "failure_type": "POSITION_WORKSPACE",
+    "first_target_z_m": 1.122000185488565,
+    "target_z_m": 1.122000185488565,
+    "target_position_error_m": 0.018921253078181387,
+    "target_normal_error_deg": 0.21220667109966776,
+    "goal_valid": false,
+    "straight_success": false,
+    "rrt_success": false,
+    "minimum_clearance_m": null
+  },
+  "edges": [
+    {
+      "task_id": "surface1_to_surface1_base_end_to_l8_end",
+      "status": "FAILED",
+      "failure_type": "POSITION_WORKSPACE",
+      "first_target_z_m": 1.122000185488565,
+      "target_z_m": 1.122000185488565,
+      "target_position_error_m": 0.018921253078181387,
+      "target_normal_error_deg": 0.21220667109966776,
+      "goal_valid": false,
+      "straight_success": false,
+      "rrt_success": false,
+      "minimum_clearance_m": null
+    },
+    {
+      "task_id": "surface1_to_surface2_base_end_to_l8_end",
+      "status": "FAILED",
+      "failure_type": "POSITION_WORKSPACE",
+      "first_target_z_m": 1.1219999082207226,
+      "target_z_m": 1.1219999082207226,
+      "target_position_error_m": 0.1484929402730854,
+      "target_normal_error_deg": 4.494342644146466,
+      "goal_valid": false,
+      "straight_success": false,
+      "rrt_success": false,
+      "minimum_clearance_m": null
+    },
+    {
+      "task_id": "surface2_to_surface1_l8_end_to_base_end",
+      "status": "FAILED",
+      "failure_type": "POSITION_WORKSPACE",
+      "first_target_z_m": 1.122000185488565,
+      "target_z_m": 1.122000185488565,
+      "target_position_error_m": 0.14428715143591447,
+      "target_normal_error_deg": 4.3690475821635,
+      "goal_valid": false,
+      "straight_success": false,
+      "rrt_success": false,
+      "minimum_clearance_m": null
+    },
+    {
+      "task_id": "surface2_to_surface2_l8_end_to_base_end",
+      "status": "FAILED",
+      "failure_type": "POSITION_WORKSPACE",
+      "first_target_z_m": 1.1219999082207226,
+      "target_z_m": 1.1219999082207226,
+      "target_position_error_m": 0.17986525458295805,
+      "target_normal_error_deg": 8.655196632626527,
+      "goal_valid": false,
+      "straight_success": false,
+      "rrt_success": false,
+      "minimum_clearance_m": null
+    }
+  ],
+  "whole_tower_complete": false,
+  "note": "当前阶段只验证Step 2之后的首个contact-state edge，未伪造完整整塔路线。"
+}

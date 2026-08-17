@@ -1,0 +1,5 @@
+critical,label,moving_endpoint,moving_start_z_m,support_endpoint,support_surface,support_z_m,target_count,target_max_z_m,target_min_z_m,target_surface,task_id
+False,surface1支撑，l8_end到surface1,l8_end,0.251740584219454,base_end,surface1,0.2519528734400398,8,37.68499877550061,1.122000185488565,surface1,surface1_to_surface1_base_end_to_l8_end
+True,surface1支撑，l8_end到surface2,l8_end,0.251740584219454,base_end,surface1,0.2519528734400398,8,37.829483409411345,1.1219999082207226,surface2,surface1_to_surface2_base_end_to_l8_end
+False,surface2支撑，base_end到surface1,base_end,0.2519528734400398,l8_end,surface2,0.251740584219454,8,37.68499877550061,1.122000185488565,surface1,surface2_to_surface1_l8_end_to_base_end
+True,surface2支撑，base_end到surface2,base_end,0.2519528734400398,l8_end,surface2,0.251740584219454,8,37.829483409411345,1.1219999082207226,surface2,surface2_to_surface2_l8_end_to_base_end

@@ -1,0 +1,53 @@
+{
+  "name": "BASELINE_8R",
+  "topology_id": "baseline_8r",
+  "dof": 8,
+  "per_side_dof": 4,
+  "remove_pair_index": null,
+  "link_lengths_m": [
+    0.16443843832875582,
+    0.09670186140917891,
+    0.1878416886636191,
+    0.16008542500802503
+  ],
+  "nominal_link_lengths_m": [
+    0.16443843832875582,
+    0.09670186140917891,
+    0.1878416886636191,
+    0.16008542500802503
+  ],
+  "bounds": [
+    [
+      0.09866306299725348,
+      0.29598918899176047
+    ],
+    [
+      0.05802111684550734,
+      0.17406335053652205
+    ],
+    [
+      0.11270501319817146,
+      0.3381150395945144
+    ],
+    [
+      0.09605125500481501,
+      0.28815376501444506
+    ]
+  ],
+  "task_success_count": 0,
+  "task_count": 4,
+  "position_success_count": 0,
+  "worst_position_error_m": 0.11885757197167597,
+  "worst_normal_error_deg": 172.33640220523344,
+  "task_failure_types": {
+    "surface1_to_surface1_base_end_to_l8_end": "POSITION_WORKSPACE",
+    "surface1_to_surface2_base_end_to_l8_end": "POSITION_WORKSPACE",
+    "surface2_to_surface1_l8_end_to_base_end": "POSITION_WORKSPACE",
+    "surface2_to_surface2_l8_end_to_base_end": "POSITION_WORKSPACE"
+  },
+  "runtime_s": 2.373625483363867,
+  "de_seed": 20260815,
+  "de_nfev": 1,
+  "de_nit": 0,
+  "boundary_hits": []
+}

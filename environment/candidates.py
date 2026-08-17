@@ -6,6 +6,10 @@ from pathlib import Path
 import numpy as np
 
 from environment.transforms import normalize
+from environment.attachment_semantics import (
+    SURFACE_TO_LEGACY_FOOT,
+    canonical_surface_name,
+)
 
 
 @dataclass(frozen=True)
@@ -18,11 +22,16 @@ class CandidatePoint:
     xyz_m: np.ndarray
     normal: np.ndarray
     uv_m: np.ndarray
+    surface_name: str = ""
+
+    def __post_init__(self) -> None:
+        surface = self.surface_name or self.foot_name
+        object.__setattr__(self, "surface_name", canonical_surface_name(surface))
 
 
 @dataclass(frozen=True)
 class CandidateSet:
-    """一只吸附端对应的一组候选点。"""
+    """一个附着表面对应的一组候选点。"""
 
     foot_name: str
     point_id: np.ndarray
@@ -33,9 +42,20 @@ class CandidateSet:
     unit: str
     coordinate_frame: str
     source_path: Path
+    surface_name: str = ""
+
+    def __post_init__(self) -> None:
+        surface = self.surface_name or self.foot_name
+        object.__setattr__(self, "surface_name", canonical_surface_name(surface))
 
     @classmethod
-    def load_npz(cls, path: Path, expected_foot_name: str) -> "CandidateSet":
+    def load_npz(
+        cls,
+        path: Path,
+        expected_foot_name: str | None = None,
+        *,
+        expected_surface_name: str | None = None,
+    ) -> "CandidateSet":
         if not path.exists():
             raise FileNotFoundError(f"找不到候选点文件：{path}（候选点NPZ数据）")
 
@@ -48,13 +68,16 @@ class CandidateSet:
             "region_id",
             "unit",
             "coordinate_frame",
-            "foot_name",
         }
         missing = sorted(required_keys - set(data.files))
         if missing:
             raise ValueError(f"{path}缺少字段：{missing}")
 
-        foot_name = str(data["foot_name"].item())
+        foot_name = str(data["foot_name"].item()) if "foot_name" in data else ""
+        surface_name = str(data["surface_name"].item()) if "surface_name" in data else foot_name
+        surface_name = canonical_surface_name(surface_name)
+        if not foot_name:
+            foot_name = SURFACE_TO_LEGACY_FOOT[surface_name]
         unit = str(data["unit"].item())
         coordinate_frame = str(data["coordinate_frame"].item())
 
@@ -68,14 +91,27 @@ class CandidateSet:
             unit=unit,
             coordinate_frame=coordinate_frame,
             source_path=path,
+            surface_name=surface_name,
         )
-        result.validate(expected_foot_name=expected_foot_name)
+        result.validate(
+            expected_foot_name=expected_foot_name,
+            expected_surface_name=expected_surface_name,
+        )
         return result
 
-    def validate(self, expected_foot_name: str) -> None:
-        if self.foot_name != expected_foot_name:
+    def validate(
+        self,
+        expected_foot_name: str | None = None,
+        *,
+        expected_surface_name: str | None = None,
+    ) -> None:
+        if expected_foot_name is not None and self.foot_name and self.foot_name != expected_foot_name:
             raise ValueError(
                 f"{self.source_path}的foot_name应为{expected_foot_name}，实际为{self.foot_name}"
+            )
+        if expected_surface_name is not None and self.surface_name != canonical_surface_name(expected_surface_name):
+            raise ValueError(
+                f"{self.source_path}的surface_name应为{expected_surface_name}，实际为{self.surface_name}"
             )
         if self.unit != "m":
             raise ValueError(f"{self.source_path}的单位应为m，实际为{self.unit}")
@@ -110,6 +146,7 @@ class CandidateSet:
             xyz_m=np.asarray(self.xyz_m[index], dtype=float),
             normal=normalize(self.normal[index], name=f"{self.foot_name} normal"),
             uv_m=np.asarray(self.uv_m[index], dtype=float),
+            surface_name=self.surface_name,
         )
 
     def sorted_indices_from_bottom(self) -> np.ndarray:

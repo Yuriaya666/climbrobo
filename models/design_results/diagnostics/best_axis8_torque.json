@@ -1,0 +1,16 @@
+{
+  "status": "ESTIMATE_ONLY_NO_MOTOR_LIMITS",
+  "max_joint_torque_nm": 12.18189149818054,
+  "per_joint_torque_nm": [
+    10.533524826404308,
+    7.26923846363885,
+    1.507303911469435,
+    8.604579807618732,
+    10.45327974816312,
+    12.18189149818054,
+    5.40759008773842,
+    8.793542698715344
+  ],
+  "mass_model": "URDF link masses mapped to parameterized segment lengths by nominal linear density",
+  "note": "未在项目中发现每个电机的连续/峰值输出力矩上限，不能做通过/不通过判定。"
+}

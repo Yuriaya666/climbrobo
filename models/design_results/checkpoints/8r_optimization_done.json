@@ -1,0 +1,53 @@
+{
+  "name": "OPTIMIZED_8R",
+  "topology_id": "optimized_8r",
+  "dof": 8,
+  "per_side_dof": 4,
+  "remove_pair_index": null,
+  "link_lengths_m": [
+    0.2944788185070823,
+    0.15865600335865368,
+    0.2098367563619965,
+    0.20845446162884873
+  ],
+  "nominal_link_lengths_m": [
+    0.16443843832875582,
+    0.09670186140917891,
+    0.1878416886636191,
+    0.16008542500802503
+  ],
+  "bounds": [
+    [
+      0.09866306299725348,
+      0.29598918899176047
+    ],
+    [
+      0.05802111684550734,
+      0.17406335053652205
+    ],
+    [
+      0.11270501319817146,
+      0.3381150395945144
+    ],
+    [
+      0.09605125500481501,
+      0.28815376501444506
+    ]
+  ],
+  "task_success_count": 0,
+  "task_count": 4,
+  "position_success_count": 4,
+  "worst_position_error_m": 4.1303782710288425e-11,
+  "worst_normal_error_deg": 171.121930499051,
+  "task_failure_types": {
+    "surface1_to_surface1_base_end_to_l8_end": "POSITION_WORKSPACE",
+    "surface1_to_surface2_base_end_to_l8_end": "POSITION_WORKSPACE",
+    "surface2_to_surface1_l8_end_to_base_end": "POSITION_WORKSPACE",
+    "surface2_to_surface2_l8_end_to_base_end": "POSITION_WORKSPACE"
+  },
+  "runtime_s": 93.10496600624174,
+  "de_seed": 20260815,
+  "de_nfev": 36,
+  "de_nit": 2,
+  "boundary_hits": []
+}

@@ -9,6 +9,12 @@ import numpy as np
 import pybullet as p
 
 from environment.attach_lines import AttachLineSample, AttachLineSet
+from environment.attachment_semantics import (
+    canonical_frame_name,
+    canonical_surface_name,
+    legacy_foot_name_for_frame,
+    legacy_surface_file_name,
+)
 from environment.candidates import CandidatePoint, CandidateSet
 from environment.collision import CollisionReport, CollisionChecker
 from environment.diagnostics import (
@@ -70,6 +76,8 @@ class PlannerSettings:
     use_pybullet_ik_seeds: bool = True
     ik_orientation_mode: str = "full"
     ik_jacobian_mode: str = "finite_difference"
+    # 两倍中心线收缩距离：2 * 0.062 m，来源是现有附着几何预处理参数。
+    same_surface_center_distance_m: float = 0.124
 
 
 @dataclass(frozen=True)
@@ -127,6 +135,14 @@ class PlanResult:
     moving_foot_name: str = "foot2"
     support_frame_name: str = "base_end"
     moving_frame_name: str = "l8_end"
+    support_surface_name: str = "surface1"
+    target_surface_name: str = "surface2"
+    # IK未成功时保留误差最小的best-effort构型，便于诊断而不是伪造成功。
+    best_ik_joints: np.ndarray | None = None
+    best_ik_xyz: np.ndarray | None = None
+    best_ik_normal: np.ndarray | None = None
+    best_ik_yaw_rad: float | None = None
+    best_ik_position_error_m: float | None = None
 
 
 class AttachmentPoseBuilder:
@@ -218,6 +234,32 @@ class OneStepPlanner:
             return suction_frames.l8_end
         raise ValueError(f"未知吸盘坐标系：{name!r}，当前仅支持base_end或l8_end")
 
+    @staticmethod
+    def _resolve_surface_name(
+        explicit_surface_name: str | None,
+        legacy_foot_name: str,
+        frame_name: str,
+        *,
+        role: str,
+    ) -> str:
+        """解析表面名称，并阻止物理端名称偷偷恢复旧的一一绑定。"""
+
+        if explicit_surface_name is not None:
+            return canonical_surface_name(explicit_surface_name)
+        if legacy_foot_name in ("foot1", "foot2"):
+            # 旧API只有在foot标签和物理端仍一致时才自动映射；
+            # 不一致时必须显式传surface，避免恢复隐式一一绑定。
+            if canonical_frame_name(legacy_foot_name) != canonical_frame_name(frame_name):
+                raise ValueError(
+                    f"{role}的旧foot标签{legacy_foot_name!r}与物理端{frame_name!r}不一致，"
+                    "请显式传入对应surface"
+                )
+            return canonical_surface_name(legacy_foot_name)
+        raise ValueError(
+            f"{role}物理端{frame_name!r}未指定surface；"
+            "请显式传入support_surface_name或target_surface_name"
+        )
+
     def plan(
         self,
         *,
@@ -225,6 +267,10 @@ class OneStepPlanner:
         moving_foot_name: str = "foot2",
         support_frame_name: str = "base_end",
         moving_frame_name: str = "l8_end",
+        support_physical_end_name: str | None = None,
+        moving_physical_end_name: str | None = None,
+        support_surface_name: str | None = None,
+        target_surface_name: str | None = None,
         support_candidate: CandidatePoint | None = None,
         start_joints: np.ndarray | None = None,
         initial_base_pose: RigidTransform | None = None,
@@ -235,25 +281,57 @@ class OneStepPlanner:
         keep_open: bool = False,
         playback_repeats: int = 1,
         playback_seconds_per_state: float = 0.05,
+        target_samples_override: list[AttachLineSample] | None = None,
     ) -> PlanResult:
         self.paths.validate_required_files()
         # 诊断文件属于本次运行产物，开始新规划时清空旧内容。
         write_ik_diagnostics(self.paths.candidate_dir / self.settings.diagnostic_output_name, [])
         write_planning_diagnostics(self.paths.candidate_dir / self.settings.planning_diagnostic_output_name, [])
         suction_frames = SuctionFrameSet.load(self.paths.suction_config)
+        if support_physical_end_name is not None:
+            support_frame_name = canonical_frame_name(support_physical_end_name)
+        if moving_physical_end_name is not None:
+            moving_frame_name = canonical_frame_name(moving_physical_end_name)
+        # 物理机器人端和目标附着面是两个独立输入。旧调用不传surface时，
+        # 才按历史foot1->surface1、foot2->surface2兼容。
+        if support_physical_end_name is not None and support_surface_name is None:
+            raise ValueError("指定support_physical_end_name时必须同时指定support_surface_name")
+        if moving_physical_end_name is not None and target_surface_name is None:
+            raise ValueError("指定moving_physical_end_name时必须同时指定target_surface_name")
+        support_surface = self._resolve_surface_name(
+            support_surface_name,
+            support_foot_name,
+            support_frame_name,
+            role="support",
+        )
+        target_surface = self._resolve_surface_name(
+            target_surface_name,
+            moving_foot_name,
+            moving_frame_name,
+            role="target",
+        )
+        support_file_name = legacy_surface_file_name(support_surface)
+        target_file_name = legacy_surface_file_name(target_surface)
         support_set = CandidateSet.load_npz(
-            self.paths.candidate_npz(support_foot_name), support_foot_name
+            self.paths.candidate_npz(support_file_name),
+            expected_surface_name=support_surface,
         )
-        moving_set = CandidateSet.load_npz(
-            self.paths.candidate_npz(moving_foot_name), moving_foot_name
+        target_set = CandidateSet.load_npz(
+            self.paths.candidate_npz(target_file_name),
+            expected_surface_name=target_surface,
         )
-        moving_lines = AttachLineSet.load_npz(
-            self.paths.attach_lines_npz(moving_foot_name), moving_foot_name
+        target_lines = AttachLineSet.load_npz(
+            self.paths.attach_lines_for_surface_npz(target_surface), target_surface
         )
 
         support = support_candidate or support_set.select_from_bottom(
             self.settings.support_rank_from_bottom
         )
+        if support_candidate is not None and support.surface_name != support_surface:
+            raise ValueError(
+                f"support_candidate属于{support.surface_name}，"
+                f"但请求的support_surface_name是{support_surface}"
+            )
         support_frame = self._frame_by_name(suction_frames, support_frame_name)
         moving_frame = self._frame_by_name(suction_frames, moving_frame_name)
 
@@ -293,16 +371,19 @@ class OneStepPlanner:
             result = self._search_target(
                 scene=scene,
                 suction_frames=suction_frames,
-                moving_set=moving_set,
-                moving_lines=moving_lines,
+                moving_set=target_set,
+                moving_lines=target_lines,
                 support=support,
                 support_frame=support_frame,
                 moving_frame=moving_frame,
                 start_joints=actual_start_joints,
+                moving_physical_name=moving_frame_name,
+                target_surface_name=target_surface,
+                target_samples_override=target_samples_override,
             )
 
             # 先用粗弧长样本定位最高可行区，再只在最高终点附近细化。
-            if result.endpoint_candidates and (
+            if target_samples_override is None and result.endpoint_candidates and (
                 not self.settings.endpoint_only or self.settings.skip_trajectory_planning
             ):
                 refined_samples = self._refinement_samples(
@@ -313,12 +394,14 @@ class OneStepPlanner:
                     refined_result = self._search_target(
                         scene=scene,
                         suction_frames=suction_frames,
-                        moving_set=moving_set,
+                        moving_set=target_set,
                         moving_lines=moving_lines,
                         support=support,
                         support_frame=support_frame,
                         moving_frame=moving_frame,
                         start_joints=actual_start_joints,
+                        moving_physical_name=moving_frame_name,
+                        target_surface_name=target_surface,
                         target_samples_override=refined_samples,
                     )
                     if refined_result.endpoint_candidates:
@@ -340,6 +423,8 @@ class OneStepPlanner:
                     moving_frame=moving_frame,
                     support_suction_pose=support_suction_pose,
                     moving_start_point_m=scene.get_suction_pose(moving_frame).position.copy(),
+                    support_surface_name=support_surface,
+                    target_surface_name=target_surface,
                     result=result,
                 )
 
@@ -349,8 +434,12 @@ class OneStepPlanner:
                     result.trajectory
                 )
                 npz_path, csv_path = self._save_successful_trajectory(
-                    scene, result, support_foot_name, moving_foot_name,
+                    scene, result,
+                    legacy_foot_name_for_frame(support_frame_name),
+                    legacy_foot_name_for_frame(moving_frame_name),
                     support_frame_name, moving_frame_name,
+                    support_surface,
+                    target_surface,
                     base_positions_m=base_positions_m,
                     base_orientations_xyzw=base_orientations_xyzw,
                     npz_path=trajectory_output_npz or self.paths.successful_trajectory_npz,
@@ -388,10 +477,12 @@ class OneStepPlanner:
 
             return replace(
                 result,
-                support_foot_name=support_foot_name,
-                moving_foot_name=moving_foot_name,
+                support_foot_name=legacy_foot_name_for_frame(support_frame_name),
+                moving_foot_name=legacy_foot_name_for_frame(moving_frame_name),
                 support_frame_name=support_frame_name,
                 moving_frame_name=moving_frame_name,
+                support_surface_name=support_surface,
+                target_surface_name=target_surface,
             )
 
     def _save_successful_trajectory(
@@ -402,6 +493,8 @@ class OneStepPlanner:
         moving_foot_name: str,
         support_frame_name: str,
         moving_frame_name: str,
+        support_surface_name: str,
+        target_surface_name: str,
         *,
         base_positions_m: np.ndarray | None = None,
         base_orientations_xyzw: np.ndarray | None = None,
@@ -434,6 +527,8 @@ class OneStepPlanner:
             moving_frame_name=moving_frame_name,
             base_position_m=base_positions_m,
             base_orientation_xyzw=base_orientations_xyzw,
+            support_surface_name=support_surface_name,
+            target_surface_name=target_surface_name,
         )
         npz_path = npz_path or self.paths.successful_trajectory_npz
         csv_path = csv_path or self.paths.successful_trajectory_csv
@@ -473,8 +568,9 @@ class OneStepPlanner:
             result.support,
             preferred_y_reference_world=np.array([0.0, 0.0, 1.0], dtype=float),
         )
+        support_frame = self._frame_by_name(suction_frames, result.support_frame_name)
         base_pose = support_suction_pose.multiply(
-            suction_frames.base_end.transform_link_to_suction.inverse()
+            support_frame.transform_link_to_suction.inverse()
         )
 
         with PyBulletScene(self.paths, gui=True) as scene:
@@ -527,6 +623,8 @@ class OneStepPlanner:
         support_frame,
         moving_frame,
         start_joints: np.ndarray,
+        moving_physical_name: str,
+        target_surface_name: str,
         target_samples_override: list[AttachLineSample] | None = None,
     ) -> PlanResult:
         # 每次粗搜或细化都从同一个起始构型计算运动脚初始高度，避免
@@ -540,6 +638,7 @@ class OneStepPlanner:
             end_link_index=moving_link_index,
             base_suction_frame=support_frame,
             end_suction_frame=moving_frame,
+            base_suction_link_index=support_link_index,
         )
         max_target_distance = chain_upper_bound + self.settings.reach_margin_m
         ik_solver = NumericalSuctionIKSolver(
@@ -556,10 +655,19 @@ class OneStepPlanner:
         diagnostics: list[IKDiagnostic] = []
         endpoint_candidates: list[EndpointCandidate] = []
         warm_start_joints: list[np.ndarray] = []
+        best_ik_joints: np.ndarray | None = None
+        best_ik_xyz: np.ndarray | None = None
+        best_ik_normal: np.ndarray | None = None
+        best_ik_yaw_rad: float | None = None
+        best_ik_position_error_m: float | None = None
         checked_targets = 0
         yaw_values = self._yaw_values()
         current_moving_z = float(current_moving_suction_pose.position[2])
-        target_samples = target_samples_override or self._build_target_samples(moving_lines)
+        target_samples = (
+            target_samples_override
+            if target_samples_override is not None
+            else self._build_target_samples(moving_lines)
+        )
         if self.settings.target_scan_limit is not None:
             target_samples = target_samples[: self.settings.target_scan_limit]
         total_targets = len(target_samples)
@@ -593,13 +701,16 @@ class OneStepPlanner:
 
         if self.settings.progress_interval > 0:
             print(
-                f"开始按连续附着线搜索{moving_set.foot_name}目标，共{total_targets}个(s)样本。",
+                f"开始按{target_surface_name}连续附着线搜索{moving_physical_name}目标，"
+                f"共{total_targets}个(s)样本。",
                 flush=True,
             )
 
         for sample in target_samples:
             checked_targets += 1
-            target = self._candidate_from_line_sample(sample, moving_set.foot_name)
+            target = self._candidate_from_line_sample(
+                sample, moving_physical_name, target_surface_name
+            )
             target_distance = float(np.linalg.norm(target.xyz_m - support.xyz_m))
             vertical_progress = float(target.xyz_m[2] - current_moving_z)
 
@@ -667,6 +778,39 @@ class OneStepPlanner:
                 )
                 continue
 
+            # 同面附着时，先按现有中心线收缩参数过滤可能重叠的目标；
+            # 终点和轨迹阶段还会再次通过统一CollisionChecker复核。
+            if (
+                canonical_surface_name(target_surface_name)
+                == canonical_surface_name(support.surface_name)
+                and target_distance < self.settings.same_surface_center_distance_m
+            ):
+                diagnostics.append(
+                    IKDiagnostic(
+                        segment_id=sample.segment_id,
+                        s_m=sample.s_m,
+                        xyz_m=sample.xyz_m,
+                        yaw_rad=0.0,
+                        vertical_progress_m=vertical_progress,
+                        position_error_m=float("inf"),
+                        normal_error_deg=float("inf"),
+                        failure_reason="SAME_SURFACE_SUCTION_OVERLAP",
+                    )
+                )
+                attempts.append(
+                    TargetAttempt(
+                        point_id=target.point_id,
+                        distance_m=target_distance,
+                        yaw_rad=0.0,
+                        reason=(
+                            "同面两吸盘中心距不足："
+                            f"{target_distance:.6f} m < "
+                            f"{self.settings.same_surface_center_distance_m:.6f} m"
+                        ),
+                    )
+                )
+                continue
+
             # 几何上界已在上面的预筛选阶段判断；这里保留一次诊断，
             # 但不再进入yaw和IK。
             sample_key = (int(sample.segment_id), round(float(sample.s_m), 9))
@@ -706,6 +850,17 @@ class OneStepPlanner:
                 successful_results = [item for item in ik_results if item.success]
                 ik_result = min(successful_results or ik_results, key=ik_solver._score)
                 goal_joints = ik_result.joints
+                scene.reset_joints(goal_joints)
+                actual_pose = scene.get_suction_pose(moving_frame)
+                if (
+                    best_ik_position_error_m is None
+                    or ik_result.position_error_m < best_ik_position_error_m
+                ):
+                    best_ik_joints = np.asarray(goal_joints, dtype=float).copy()
+                    best_ik_xyz = actual_pose.position.copy()
+                    best_ik_normal = actual_pose.z_axis.copy()
+                    best_ik_yaw_rad = float(yaw_rad)
+                    best_ik_position_error_m = float(ik_result.position_error_m)
 
                 if not ik_result.success:
                     reason = self._ik_failure_reason(ik_result)
@@ -757,6 +912,10 @@ class OneStepPlanner:
                     ),
                     support_position_tolerance_m=self.settings.position_tolerance_m,
                     support_normal_tolerance_deg=self.settings.normal_tolerance_deg,
+                    moving_suction_frame=moving_frame,
+                    support_surface_name=support.surface_name,
+                    target_surface_name=target.surface_name,
+                    minimum_same_surface_center_distance_m=self.settings.same_surface_center_distance_m,
                 )
                 endpoint_success_count = 0
                 endpoint_failure_reason = "GOAL_TOWER_COLLISION"
@@ -818,6 +977,11 @@ class OneStepPlanner:
             target_s_m=best_endpoint.s_m if best_endpoint else None,
             vertical_progress_m=best_endpoint.vertical_progress_m if best_endpoint else None,
             endpoint_candidates=endpoint_candidates,
+            best_ik_joints=best_ik_joints,
+            best_ik_xyz=best_ik_xyz,
+            best_ik_normal=best_ik_normal,
+            best_ik_yaw_rad=best_ik_yaw_rad,
+            best_ik_position_error_m=best_ik_position_error_m,
         )
 
     def _plan_endpoint_candidates(
@@ -829,6 +993,8 @@ class OneStepPlanner:
         moving_frame,
         support_suction_pose: RigidTransform,
         moving_start_point_m: np.ndarray,
+        support_surface_name: str,
+        target_surface_name: str,
         result: PlanResult,
     ) -> PlanResult:
         """阶段3：按高度从高到低，对合法终点尝试直线和RRT。"""
@@ -847,6 +1013,8 @@ class OneStepPlanner:
                 support=result.support,
                 target=endpoint.target,
                 moving_start_point_m=moving_start_point_m,
+                support_surface_name=support_surface_name,
+                target_surface_name=target_surface_name,
             )
             straight = self._interpolate_joints(result.start_joints, endpoint.goal_joints)
             if self._trajectory_is_valid(scene, checker, straight):
@@ -989,6 +1157,17 @@ class OneStepPlanner:
             diagnostics_path=result.diagnostics_path,
             endpoint_candidates=result.endpoint_candidates,
             trajectory_method=method,
+            support_foot_name=result.support_foot_name,
+            moving_foot_name=result.moving_foot_name,
+            support_frame_name=result.support_frame_name,
+            moving_frame_name=result.moving_frame_name,
+            support_surface_name=result.support_surface_name,
+            target_surface_name=result.target_surface_name,
+            best_ik_joints=result.best_ik_joints,
+            best_ik_xyz=result.best_ik_xyz,
+            best_ik_normal=result.best_ik_normal,
+            best_ik_yaw_rad=result.best_ik_yaw_rad,
+            best_ik_position_error_m=result.best_ik_position_error_m,
         )
 
     def _make_collision_checker(
@@ -1002,6 +1181,8 @@ class OneStepPlanner:
         support: CandidatePoint,
         target: CandidatePoint,
         moving_start_point_m: np.ndarray | None = None,
+        support_surface_name: str = "surface1",
+        target_surface_name: str = "surface2",
     ) -> CollisionChecker:
         return CollisionChecker(
             scene,
@@ -1016,7 +1197,22 @@ class OneStepPlanner:
             moving_start_point_m=moving_start_point_m,
             support_position_tolerance_m=self.settings.position_tolerance_m,
             support_normal_tolerance_deg=self.settings.normal_tolerance_deg,
+            moving_suction_frame=self._frame_for_link_name(scene, moving_link_index),
+            support_surface_name=support_surface_name,
+            target_surface_name=target_surface_name,
+            minimum_same_surface_center_distance_m=self.settings.same_surface_center_distance_m,
         )
+
+    @staticmethod
+    def _frame_for_link_name(scene: PyBulletScene, link_index: int):
+        """按实际运动link取得对应吸盘功能坐标系。"""
+
+        frames = SuctionFrameSet.load(scene.paths.suction_config)
+        if frames.base_end.link_name == scene.link_name(link_index):
+            return frames.base_end
+        if frames.l8_end.link_name == scene.link_name(link_index):
+            return frames.l8_end
+        raise ValueError(f"运动link没有对应吸盘功能坐标系：{scene.link_name(link_index)}")
 
     @staticmethod
     def _interpolate_segment(start: np.ndarray, goal: np.ndarray, resolution: float) -> np.ndarray:
@@ -1054,7 +1250,11 @@ class OneStepPlanner:
         return np.concatenate(pieces, axis=0)
 
     @staticmethod
-    def _candidate_from_line_sample(sample: AttachLineSample, foot_name: str) -> CandidatePoint:
+    def _candidate_from_line_sample(
+        sample: AttachLineSample,
+        foot_name: str,
+        surface_name: str = "surface2",
+    ) -> CandidatePoint:
         """将连续样本包装成兼容旧姿态和碰撞接口的候选点。"""
 
         synthetic_id = -((int(sample.segment_id) + 1) * 1_000_000 + int(round(sample.s_m * 1000.0)))
@@ -1065,6 +1265,7 @@ class OneStepPlanner:
             xyz_m=np.asarray(sample.xyz_m, dtype=float),
             normal=np.asarray(sample.normal, dtype=float),
             uv_m=np.asarray(sample.uv_m, dtype=float),
+            surface_name=surface_name,
         )
 
     def _build_target_samples(self, lines: AttachLineSet) -> list[AttachLineSample]:
@@ -1229,7 +1430,8 @@ def format_plan_result(result: PlanResult) -> str:
 
     lines = [
         "========== 单步规划结果 ==========",
-        f"支撑点：foot1 point_id={result.support.point_id}, "
+        f"支撑端：{result.support_frame_name} on {result.support_surface_name}; "
+        f"point_id={result.support.point_id}, "
         f"region_id={result.support.region_id}, xyz_m={result.support.xyz_m.tolist()}",
         f"已检查目标点数量：{result.checked_targets}",
     ]
@@ -1250,7 +1452,8 @@ def format_plan_result(result: PlanResult) -> str:
     lines.extend(
         [
             "规划结果：成功",
-            f"目标点：foot2 point_id={result.target.point_id}, "
+            f"目标端：{result.moving_frame_name} on {result.target_surface_name}; "
+            f"point_id={result.target.point_id}, "
             f"region_id={result.target.region_id}, xyz_m={result.target.xyz_m.tolist()}",
             f"支撑点到目标点距离：{result.target_distance_m:.4f} m",
             f"目标yaw采样角：{math.degrees(result.target_yaw_rad or 0.0):.1f} deg",

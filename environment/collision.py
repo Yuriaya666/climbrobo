@@ -6,6 +6,7 @@ import numpy as np
 import pybullet as p
 
 from environment.scene import PyBulletScene
+from environment.attachment_semantics import canonical_surface_name
 from environment.suction_frames import SuctionFrame
 from environment.transforms import RigidTransform, angle_between_vectors_rad
 
@@ -51,6 +52,10 @@ class CollisionChecker:
         moving_start_point_m: np.ndarray | None = None,
         support_position_tolerance_m: float = 0.005,
         support_normal_tolerance_deg: float = 3.0,
+        moving_suction_frame: SuctionFrame | None = None,
+        support_surface_name: str = "surface1",
+        target_surface_name: str = "surface2",
+        minimum_same_surface_center_distance_m: float | None = None,
     ) -> None:
         if scene.robot_id is None or scene.tower_id is None:
             raise RuntimeError("碰撞检查前必须先加载机器人和铁塔")
@@ -72,6 +77,14 @@ class CollisionChecker:
         )
         self.support_position_tolerance_m = float(support_position_tolerance_m)
         self.support_normal_tolerance_rad = np.deg2rad(float(support_normal_tolerance_deg))
+        self.moving_suction_frame = moving_suction_frame
+        self.support_surface_name = canonical_surface_name(support_surface_name)
+        self.target_surface_name = canonical_surface_name(target_surface_name)
+        self.minimum_same_surface_center_distance_m = (
+            None
+            if minimum_same_surface_center_distance_m is None
+            else float(minimum_same_surface_center_distance_m)
+        )
 
     def check_state(
         self,
@@ -89,7 +102,33 @@ class CollisionChecker:
         )
         items.extend(self._self_collision_violations())
         items.extend(self._support_constraint_violations())
+        items.extend(self._same_surface_suction_violations())
         return CollisionReport(ok=(len(items) == 0), items=items)
+
+    def _same_surface_suction_violations(self) -> list[CollisionItem]:
+        """同一附着面上的两个吸盘不能因中心距离过近而重叠。"""
+
+        if (
+            self.minimum_same_surface_center_distance_m is None
+            or self.support_surface_name != self.target_surface_name
+            or self.support_suction_frame is None
+            or self.moving_suction_frame is None
+        ):
+            return []
+        support_pose = self.scene.get_suction_pose(self.support_suction_frame)
+        moving_pose = self.scene.get_suction_pose(self.moving_suction_frame)
+        distance = float(np.linalg.norm(support_pose.position - moving_pose.position))
+        if distance + 1e-12 >= self.minimum_same_surface_center_distance_m:
+            return []
+        return [
+            CollisionItem(
+                kind="same_surface_suction_overlap",
+                link_a=self.scene.link_name(self.support_link_index),
+                link_b=self.scene.link_name(self.moving_link_index),
+                distance_m=distance,
+                position_m=0.5 * (support_pose.position + moving_pose.position),
+            )
+        ]
 
     def _support_constraint_violations(self) -> list[CollisionItem]:
         if self.support_suction_frame is None or self.support_suction_pose is None:
