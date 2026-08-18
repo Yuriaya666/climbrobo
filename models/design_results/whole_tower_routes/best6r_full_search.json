@@ -1,0 +1,76 @@
+{
+  "status": "NO_INITIAL_CONTACT_STATE",
+  "design_name": "6R_DROP_PAIR_3",
+  "maximum_reachable_height_m": 0.0,
+  "goal_height_m": 37.85948340941761,
+  "initial": {
+    "status": "FAIL",
+    "position_error_m": 0.03138201157384341,
+    "normal_error_deg": 1.05341419305614,
+    "goal_valid": false,
+    "minimum_clearance_m": null,
+    "critical_pair": null,
+    "failure_type": "POSITION_WORKSPACE",
+    "q": [
+      2.7792412143914667,
+      0.14947251751575463,
+      0.4699137672221866,
+      -3.0146891625908374,
+      0.23013625472685795,
+      -0.4529627313085051
+    ],
+    "support_node": {
+      "node_id": "surface2:56:0.180000",
+      "surface_name": "surface2",
+      "segment_id": 56,
+      "s_m": 0.18000000003752942,
+      "sample": {
+        "segment_id": 56,
+        "s_m": 0.18000000003752942,
+        "xyz_m": [
+          0.0699998268611637,
+          -2.1966392128199003e-10,
+          0.2520007237010176
+        ],
+        "normal": [
+          2.7755572978987915e-14,
+          -1.0,
+          1.4210853365241813e-11
+        ],
+        "uv_m": [
+          -18.79981880619752,
+          0.00013754419051333414
+        ]
+      }
+    },
+    "moving_node": {
+      "node_id": "surface1:55:0.180000",
+      "surface_name": "surface1",
+      "segment_id": 55,
+      "s_m": 0.18000000000166022,
+      "sample": {
+        "segment_id": 55,
+        "s_m": 0.18000000000166022,
+        "xyz_m": [
+          0.0017074970303726184,
+          0.06999996004522423,
+          0.2520010088325027
+        ],
+        "normal": [
+          -0.9999999958856641,
+          -7.264577108190293e-08,
+          -9.071199780455458e-05
+        ],
+        "uv_m": [
+          -18.82327567070976,
+          -0.0006489866109611708
+        ]
+      }
+    }
+  },
+  "expanded": 0,
+  "state_count": 0,
+  "edge_count": 0,
+  "edges": {},
+  "whole_tower_complete": false
+}

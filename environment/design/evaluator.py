@@ -113,6 +113,12 @@ class MorphologyTaskEvaluator:
 
     def _start_q(self, task: TaskSpec) -> np.ndarray:
         baseline = np.asarray(task.start_q, dtype=float)
+        if baseline.size == self.model.spec.dof:
+            return baseline.copy()
+        if baseline.size != 8:
+            raise ValueError(
+                f"task.start_q必须是当前DOF或8R基线维度，实际为{baseline.shape}"
+            )
         if self.model.spec.per_side_dof == 4:
             return baseline.copy()
         left = baseline[[3, 2, 1, 0]][list(self.model.spec.left_active_indices)]

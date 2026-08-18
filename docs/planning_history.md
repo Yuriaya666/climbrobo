@@ -102,3 +102,13 @@ Test B：`l8_end`固定在surface2，`base_end`固定目标到surface2。最近�
 四个历史单一q_goal在校准proxy下仍为`0/4`，但这不再被解释为目标不可行。新的固定任务搜索每个任务执行`96`次IK尝试，得到`17/9/12/23`个unique position+normal branch，碰撞过滤后分别保留`6/3/3/6`个合法endpoint。两个任务Straight成功，两个任务使用未扩大预算的RRT-Connect成功。合法终点保存在`models/design_results/collision_free_q_goals/`（多分支碰撞筛选得到的终点文件），对应轨迹保存在`models/design_results/trajectories/`（实际Straight/RRT轨迹）。完整结果在`docs/collision_proxy_and_collision_aware_ik.md`（独立碰撞代理与多分支IK报告），尺寸表在`models/design_results/collision_proxy_dimensions.csv`（STL标定尺寸表），图片在`models/design_results/plots/`（当前8R碰撞模型视图）。
 
 本轮只验证固定8R候选的首层局部任务，没有重新优化杆长、搜索新axis、研究6R或执行整塔规划。关节/电机独立CAD和最终工程碰撞包络仍未闭合，因此当前结论是“校准参数化proxy下存在合法首层终点和轨迹”，不是最终机械制造认证。
+
+## 18. Autonomous whole-tower morphology checkpoint
+
+在固定`OPTIMIZED_8R_YAW_PITCH_YAW_PITCH`（当前有限轴8R候选）和当前真实Mesh/校准proxy下，继续完成了双候选接触图与精细轨迹验证。`BEST_6R`（位置层最佳6R候选）在Step 2初始接触状态即以`POSITION_WORKSPACE`失败，position error为`0.0313820116 m`，最大高度为`0 m`。
+
+8R双候选接触图完成`133`次扩展，得到`210`个状态和`413`条边，最高endpoint高度`37.8549987748 m`，目标高度为`37.8594834094 m`，已进入`0.02 m`目标容差。该结果证明endpoint graph可到达塔顶区域，但不等于完整轨迹成功。
+
+最高endpoint路线的rebase-aware fine validation前`10`条边均以Straight成功，随后在实际支持姿态下的目标`surface1:46:0.420261`（精细路线第11条边目标）没有得到标准或expanded IK候选。该失败发生在有效q_goal进入轨迹阶段之前，不是RRT预算问题；当前固定RRT参数没有在该路线被调用。最终 bounded-search 状态为`NO_SOLUTION_FOUND_WITHIN_SEARCH_SPACE`，不宣称所有可能8R接触采样和所有未来机构设计均不可行。
+
+完整研究报告为`docs/morphology_research_report.md`（本轮自主机构研究最终报告），最终接触图checkpoint为`models/design_results/checkpoints/whole_tower_search_checkpoint.json`（8R双候选图和精细路线断点）。后续若恢复研究，优先保留rebase后的多个IK分支并围绕第11条边扩展目标候选，不应先扩大RRT预算。

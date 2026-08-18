@@ -180,7 +180,14 @@ def _collision_records(
     if world.tower_id is not None:
         for body, name in items:
             record = _closest_record(
-                tuple(p.getClosestPoints(body, world.tower_id, distance=query_distance_m)),
+                tuple(
+                    p.getClosestPoints(
+                        body,
+                        world.tower_id,
+                        distance=query_distance_m,
+                        physicsClientId=world.client_id,
+                    )
+                ),
                 name,
                 "Tower",
             )
@@ -196,7 +203,14 @@ def _collision_records(
             if tuple(sorted((body_a, body_b))) in world._allowed_adjacent_pairs:
                 continue
             record = _closest_record(
-                tuple(p.getClosestPoints(body_a, body_b, distance=query_distance_m)),
+                tuple(
+                    p.getClosestPoints(
+                        body_a,
+                        body_b,
+                        distance=query_distance_m,
+                        physicsClientId=world.client_id,
+                    )
+                ),
                 name_a,
                 name_b,
             )
@@ -212,6 +226,7 @@ def _collision_summary(
     sample: AttachLineSample,
     *,
     query_distance_m: float = 0.02,
+    detailed: bool = True,
 ) -> dict[str, object]:
     world.update(state)
     allowed_positions = {
@@ -222,6 +237,33 @@ def _collision_summary(
         allowed_endpoint_positions=allowed_positions,
         allowed_contact_radius_m=ALLOWED_CONTACT_RADIUS_M,
     )
+    if not detailed:
+        critical = None
+        bad: list[dict[str, object]] = []
+        if not official.ok:
+            critical_name = official.critical_link or official.kind or "UNKNOWN_COLLISION"
+            if "↔" in critical_name:
+                link_a, link_b = critical_name.split("↔", 1)
+            else:
+                link_a, link_b = critical_name, official.kind or "UNKNOWN"
+            critical = {
+                "link_a": link_a,
+                "link_b": link_b,
+                "distance_m": float(official.minimum_clearance_m),
+                "penetration_m": max(0.0, -float(official.minimum_clearance_m)),
+                "allowed": False,
+            }
+            bad.append(critical)
+        return {
+            "pass": bool(official.ok),
+            "minimum_clearance_m": float(official.minimum_clearance_m),
+            "critical_pair": official.critical_link,
+            "critical": critical,
+            "bad_pairs": bad,
+            "bad_pair_counts": {} if official.ok else {str(official.critical_link or official.kind): 1},
+            "self_collision": bool(not official.ok and official.kind == "SELF_COLLISION"),
+            "tower_collision": bool(not official.ok and official.kind == "TOWER_COLLISION"),
+        }
     records = _collision_records(world, allowed_positions, query_distance_m=query_distance_m)
     disallowed = [row for row in records if not row.get("allowed", False)]
     bad = [row for row in disallowed if float(row["distance_m"]) <= 0.0]
@@ -440,6 +482,8 @@ def _collision_filter(
     sample: AttachLineSample,
     model: MorphologyModel,
     candidates: list[dict[str, object]],
+    *,
+    detailed: bool = True,
 ) -> dict[str, object]:
     collision_free: list[dict[str, object]] = []
     pair_counts: Counter[str] = Counter()
@@ -448,7 +492,7 @@ def _collision_filter(
         for candidate in candidates:
             q = np.asarray(candidate["q"], dtype=float)
             state = model.world_state_for_support(q, task.support_endpoint, _task_pose(task.support_pose))
-            collision = _collision_summary(world, state, task, sample)
+            collision = _collision_summary(world, state, task, sample, detailed=detailed)
             if collision["pass"]:
                 # Positive-clearance ranking is expensive against the dense
                 # Tower mesh, so only legal candidates receive the wider
@@ -459,6 +503,7 @@ def _collision_filter(
                     task,
                     sample,
                     query_distance_m=COLLISION_QUERY_DISTANCE_M,
+                    detailed=detailed,
                 )
             if not collision["pass"]:
                 pair_counts.update(collision["bad_pair_counts"])

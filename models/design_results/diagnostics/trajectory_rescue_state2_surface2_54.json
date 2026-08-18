@@ -1,0 +1,110 @@
+{
+  "task_id": "state_0002_surface2_55_0.280000_to_surface2:54:0.000000",
+  "target": "surface2:54:0.000000",
+  "ik": {
+    "task_id": "state_0002_surface2_55_0.280000_to_surface2:54:0.000000",
+    "yaw_samples": 8,
+    "seeds_per_yaw": 8,
+    "normal_only_seeds": 32,
+    "raw_ik_attempts": 96,
+    "position_normal_converged_count": 15,
+    "unique_ik_branch_count": 15
+  },
+  "collision_pair_counts": {
+    "right_link_1↔Tower": 3,
+    "right_link_2↔Tower": 2,
+    "right_joint_1↔Tower": 2,
+    "right_joint_2↔Tower": 3,
+    "base_end_mesh↔right_link_2": 2,
+    "base_end_mesh↔right_link_3": 2,
+    "base_end_mesh↔right_joint_2": 1,
+    "base_end_mesh↔right_joint_3": 2,
+    "left_link_3↔right_link_3": 8,
+    "right_link_3↔left_joint_4": 3,
+    "left_link_3↔right_joint_4": 6,
+    "central_body↔left_link_3": 3,
+    "central_body↔right_link_3": 2,
+    "central_body↔left_joint_4": 3,
+    "central_body↔right_joint_4": 2,
+    "left_link_1↔left_link_3": 3,
+    "left_link_1↔left_joint_3": 2,
+    "right_link_1↔right_link_3": 2,
+    "right_link_1↔right_joint_3": 2,
+    "left_link_1↔Tower": 6,
+    "left_link_2↔Tower": 6,
+    "left_link_3↔Tower": 2,
+    "left_joint_2↔Tower": 5,
+    "left_joint_3↔Tower": 2,
+    "right_link_3↔right_joint_1": 1,
+    "l8_end_mesh↔left_link_1": 2,
+    "l8_end_mesh↔left_link_2": 4,
+    "l8_end_mesh↔left_link_3": 4,
+    "l8_end_mesh↔left_joint_3": 4,
+    "left_joint_3↔right_joint_4": 1
+  },
+  "candidates": [
+    {
+      "rank": 0,
+      "q": [
+        1.4075523401941061,
+        0.45289364086519945,
+        -0.02000485591781555,
+        -1.7243254203346998,
+        2.005150145706917,
+        0.5802386018176793,
+        -0.4094121520420266,
+        0.48633255355721156
+      ],
+      "clearance": 0.05,
+      "joint_margin": 0.5905878479579734,
+      "fine": {
+        "success": false,
+        "method": null,
+        "failure_type": "left_link_3",
+        "minimum_trajectory_clearance_m": -0.0008691085391029085,
+        "rrt_stats": [
+          {
+            "seed": 20260817,
+            "iterations": 1200,
+            "tree_nodes": 2,
+            "success": false
+          },
+          {
+            "seed": 20260818,
+            "iterations": 1200,
+            "tree_nodes": 2,
+            "success": false
+          }
+        ],
+        "trajectory_artifact": null,
+        "planning_time_s": 8.9056353000924,
+        "q_path_count": 0
+      }
+    },
+    {
+      "rank": 1,
+      "q": [
+        1.9083774397989957,
+        0.6298170791403362,
+        0.5803575672604994,
+        0.29477328395952257,
+        1.955282712433459,
+        0.7035151904712722,
+        0.3510608259422243,
+        0.05090817864257059
+      ],
+      "clearance": 0.03975254988164598,
+      "joint_margin": 0.41964243273950064,
+      "fine": {
+        "success": true,
+        "method": "Straight",
+        "failure_type": null,
+        "minimum_trajectory_clearance_m": Infinity,
+        "rrt_stats": [],
+        "trajectory_artifact": "models/design_results/whole_tower_routes/finite_axis_yaw_pitch_yaw_pitch/rescue/edge_0001_state_0002_surface2_55_0.280000_to_surface2_54_0.000000.npz",
+        "planning_time_s": 2.6375312181189656,
+        "q_path_count": 40
+      }
+    }
+  ]
+}

@@ -322,7 +322,12 @@ class MorphologyCollisionWorld:
             robot_items.extend((body, f"{endpoint}_mesh") for endpoint, body in self.endpoint_ids.items())
             for body_id, name in robot_items:
                 query_distance_m = max(float(distance_margin_m), 0.02)
-                points = p.getClosestPoints(body_id, self.tower_id, distance=query_distance_m)
+                points = p.getClosestPoints(
+                    body_id,
+                    self.tower_id,
+                    distance=query_distance_m,
+                    physicsClientId=self.client_id,
+                )
                 for point in points:
                     distance = float(point[8])
                     endpoint = "base_end" if name == "base_end_mesh" else "l8_end" if name == "l8_end_mesh" else None
@@ -359,7 +364,12 @@ class MorphologyCollisionWorld:
             # is zero.  PyBullet's concave-mesh distance query can otherwise
             # return no record for a real overlap after a reset/update.
             query_distance_m = max(float(distance_margin_m), 0.02)
-            points = p.getClosestPoints(first, second, distance=query_distance_m)
+            points = p.getClosestPoints(
+                first,
+                second,
+                distance=query_distance_m,
+                physicsClientId=self.client_id,
+            )
             if not points:
                 continue
             point = min(points, key=lambda item: float(item[8]))
